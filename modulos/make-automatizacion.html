@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make: Automatización sin Código — Guía Completa (2025) — Berespa</title>
+  <meta name="description" content="Aprende a automatizar tareas con Make (antes Integromat). Conecta apps, crea flujos automáticos y ahorra horas cada semana sin saber programar. Guía en español.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); line-height:1.7; }
+    a { color:var(--accent2); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    nav { position:sticky; top:0; z-index:100; background:rgba(8,9,13,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700; background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-back { font-size:0.88rem; color:var(--muted); }
+    .nav-back:hover { color:var(--text); text-decoration:none; }
+    .with-sidebar { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:40px; padding:40px 24px 80px; align-items:start; }
+    .sidebar { position:sticky; top:80px; }
+    .breadcrumb { display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--text); text-decoration:none; }
+    .article-nivel { display:inline-block; font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:100px; background:rgba(34,211,165,0.12); color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+    .article-header h1 { font-family:var(--ff2); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; line-height:1.2; margin-bottom:14px; }
+    .article-meta { display:flex; gap:20px; font-size:0.83rem; color:var(--muted); flex-wrap:wrap; }
+
+    /* BANNER AFILIADO DESTACADO */
+    .aff-banner-hero {
+      background: linear-gradient(135deg, rgba(108,99,255,0.14), rgba(34,211,165,0.08));
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .aff-banner-hero::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+    }
+    .aff-banner-hero .badge {
+      display:inline-block; font-size:0.7rem; font-weight:700;
+      color:#fbbf24; background:rgba(251,191,36,0.1);
+      border:1px solid rgba(251,191,36,0.25);
+      padding:3px 10px; border-radius:100px;
+      text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px;
+    }
+    .aff-banner-hero h3 { font-family:var(--ff2); font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+    .aff-banner-hero p { font-size:0.88rem; color:var(--muted); margin-bottom:16px; max-width:480px; }
+    .aff-bullets { list-style:none; display:flex; flex-wrap:wrap; gap:10px 24px; margin-bottom:20px; }
+    .aff-bullets li { font-size:0.85rem; color:var(--green); font-weight:500; }
+    .aff-cta-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .aff-cta-btn { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:11px 26px; border-radius:10px; font-weight:700; font-size:0.92rem; transition:opacity .2s, transform .2s; box-shadow:0 4px 18px rgba(108,99,255,0.3); }
+    .aff-cta-btn:hover { opacity:.88; transform:translateY(-1px); text-decoration:none; }
+    .aff-disclosure { font-size:0.7rem; color:var(--muted); opacity:.6; }
+
+    .toc { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin-bottom:20px; }
+    .toc h3 { font-family:var(--ff2); font-size:0.82rem; font-weight:600; margin-bottom:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .toc ol { padding-left:16px; }
+    .toc li { margin-bottom:7px; font-size:0.86rem; }
+    .toc a { color:var(--muted); }
+    .toc a:hover { color:var(--accent2); text-decoration:none; }
+    .article-body h2 { font-family:var(--ff2); font-size:1.45rem; font-weight:700; margin:48px 0 14px; padding-top:20px; border-top:1px solid var(--border); }
+    .article-body h3 { font-family:var(--ff2); font-size:1.05rem; font-weight:600; margin:26px 0 10px; color:var(--accent2); }
+    .article-body p { margin-bottom:18px; font-size:0.98rem; color:#c8cad4; }
+    .article-body ul, .article-body ol { padding-left:20px; margin-bottom:18px; }
+    .article-body li { margin-bottom:9px; font-size:0.96rem; color:#c8cad4; }
+    .article-body strong { color:var(--text); font-weight:600; }
+    .callout { background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.2); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0; }
+    .callout.green { background:rgba(34,211,165,0.07); border-color:rgba(34,211,165,0.2); border-left-color:var(--green); }
+    .callout p { margin:0; font-size:0.91rem; }
+
+    /* ESCENARIO FLOW */
+    .scenario {
+      background:var(--bg3); border:1px solid var(--border); border-radius:14px;
+      padding:22px 24px; margin:20px 0;
+    }
+    .scenario-title { font-family:var(--ff2); font-size:0.95rem; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+    .scenario-steps { display:flex; flex-direction:column; gap:8px; }
+    .scenario-step {
+      display:flex; align-items:flex-start; gap:12px;
+      font-size:0.88rem; color:#c8cad4;
+    }
+    .step-dot {
+      width:24px; height:24px; border-radius:50%; flex-shrink:0;
+      background:rgba(108,99,255,0.2); border:1px solid rgba(108,99,255,0.3);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.72rem; font-weight:700; color:var(--accent2);
+      margin-top:1px;
+    }
+    .step-arrow { color:var(--muted); font-size:0.8rem; margin:0 4px; }
+
+    .ad-slot { width:100%; min-height:90px; background:var(--bg2); border:1px dashed rgba(255,255,255,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.74rem; letter-spacing:.5px; margin:28px 0; }
+    .ad-label { font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+    .module-cta { background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(34,211,165,0.06)); border:1px solid rgba(108,99,255,0.2); border-radius:16px; padding:30px; text-align:center; margin:44px 0; }
+    .module-cta h3 { font-family:var(--ff2); font-size:1.15rem; font-weight:700; margin-bottom:8px; }
+    .module-cta p { font-size:0.88rem; color:var(--muted); margin-bottom:18px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:12px 26px; border-radius:10px; font-weight:600; font-size:0.93rem; transition:.2s; }
+    .btn-primary:hover { opacity:.85; text-decoration:none; }
+    .sidebar-related { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-top:20px; }
+    .sidebar-related h4 { font-family:var(--ff2); font-size:0.85rem; font-weight:600; margin-bottom:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-related ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .sidebar-related a { font-size:0.84rem; color:var(--muted); }
+    .sidebar-related a:hover { color:var(--accent2); text-decoration:none; }
+    @media(max-width:900px) { .with-sidebar { grid-template-columns:1fr; } .sidebar { position:static; } }
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:28px 24px; text-align:center; color:var(--muted); font-size:0.84rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">berespa</a>
+  <a href="index.html" class="nav-back">← Todos los módulos</a>
+</nav>
+
+<div class="with-sidebar">
+  <div>
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a> <span>›</span>
+      <a href="index.html">Módulos</a> <span>›</span>
+      Make: Automatización
+    </div>
+
+    <div class="article-header" style="margin-bottom:28px">
+      <span class="article-nivel">Básico → Intermedio</span>
+      <h1>Make: Automatiza tu Negocio sin Saber Programar (2025)</h1>
+      <div class="article-meta">
+        <span>📖 7 lecciones</span>
+        <span>⏱ 50 minutos</span>
+        <span>✓ Gratis</span>
+        <span>🗓 Actualizado junio 2025</span>
+      </div>
+    </div>
+
+    <!-- BANNER AFILIADO DESTACADO (link real) -->
+    <div class="aff-banner-hero">
+      <div class="badge">⭐ Recomendado por Berespa</div>
+      <h3>Empieza con Make gratis — el enlace de nuestra comunidad</h3>
+      <p>Regístrate con nuestro enlace y obtienes acceso al plan gratuito con 1.000 operaciones al mes. Sin tarjeta. Sin trampas.</p>
+      <ul class="aff-bullets">
+        <li>✓ 1.000 operaciones/mes gratis</li>
+        <li>✓ +1.500 apps conectadas</li>
+        <li>✓ Visual, sin código</li>
+        <li>✓ En español disponible</li>
+      </ul>
+      <div class="aff-cta-row">
+        <a href="https://www.make.com/en/register?pc=berespa" target="_blank" rel="noopener" class="aff-cta-btn">Crear cuenta en Make gratis →</a>
+        <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <h2 id="que-es">1. ¿Qué es Make y para qué sirve?</h2>
+      <p>Make (antes llamado Integromat) es una plataforma de automatización visual. En lugar de contratar a un programador para conectar dos aplicaciones, tú lo haces arrastrando bloques en una pantalla.</p>
+      <p>La idea es simple: <strong>cuando pasa X, haz Y automáticamente</strong>. Por ejemplo: cuando alguien rellena tu formulario de contacto, crea automáticamente una tarea en Notion, envía un email de bienvenida y guarda los datos en una hoja de Google Sheets. Todo sin tocar nada.</p>
+
+      <div class="callout green">
+        <p>✅ <strong>¿Por qué Make y no Zapier?</strong> Make es más potente, más flexible y más barato. Zapier es más simple pero cobra más por menos operaciones. Para emprendedores y freelancers, Make gana casi siempre.</p>
+      </div>
+
+      <h2 id="conceptos">2. Los 3 conceptos que necesitas entender</h2>
+
+      <h3>Escenario</h3>
+      <p>Un escenario es tu flujo de automatización. Es la "receta" que le dices a Make: empieza aquí, haz esto, luego esto otro. Puedes tener tantos escenarios como quieras.</p>
+
+      <h3>Módulo (o nodo)</h3>
+      <p>Cada paso dentro del escenario es un módulo. Puede ser "nuevo email recibido en Gmail", "crear fila en Google Sheets" o "enviar mensaje en Telegram". Cada app tiene sus propios módulos.</p>
+
+      <h3>Operación</h3>
+      <p>Cada vez que Make ejecuta un módulo, gasta una operación. El plan gratuito incluye 1.000 operaciones al mes, lo que da para bastante si tus flujos son sencillos.</p>
+
+      <div class="callout">
+        <p>💡 <strong>Ejemplo real:</strong> si tienes un escenario con 3 módulos que se ejecuta 100 veces al mes, gasta 300 operaciones. Con 1.000 al mes puedes tener varios flujos activos sin pagar nada.</p>
+      </div>
+
+      <h2 id="primeros-pasos">3. Tu primer escenario paso a paso</h2>
+      <p>Vamos a crear el escenario más útil para empezar: <strong>capturar leads de un formulario y guardarlos en Google Sheets</strong>.</p>
+
+      <div class="scenario">
+        <div class="scenario-title">⚙️ Escenario: Formulario → Google Sheets → Email</div>
+        <div class="scenario-steps">
+          <div class="scenario-step">
+            <div class="step-dot">1</div>
+            <div><strong>Trigger:</strong> Alguien envía un formulario de Typeform / Tally / Google Forms</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">2</div>
+            <div><strong>Acción:</strong> Make añade automáticamente los datos como nueva fila en Google Sheets</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">3</div>
+            <div><strong>Acción:</strong> Make envía un email de confirmación al lead con Gmail</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">4</div>
+            <div><strong>Opcional:</strong> Make te avisa a ti por Telegram o WhatsApp que tienes un nuevo lead</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Crear esto en Make lleva menos de 15 minutos la primera vez. Después funciona solo, 24/7, sin que hagas nada.</p>
+
+      <h2 id="automatizaciones">4. Las 10 automatizaciones más útiles con Make</h2>
+
+      <h3>Para creadores de contenido</h3>
+      <ul>
+        <li><strong>Publicar automáticamente</strong> — programa posts en Instagram, LinkedIn y Twitter desde una hoja de cálculo</li>
+        <li><strong>Banco de ideas</strong> — cuando guardas un artículo en Pocket, se añade a tu Notion automáticamente</li>
+        <li><strong>Resumen de noticias</strong> — recibe cada mañana un email con las novedades de tu sector via RSS + IA</li>
+      </ul>
+
+      <h3>Para freelancers y autónomos</h3>
+      <ul>
+        <li><strong>CRM automático</strong> — cada nuevo email de cliente crea una tarea en Notion o Trello</li>
+        <li><strong>Facturación semi-automática</strong> — cuando cierras un proyecto, genera el borrador de factura</li>
+        <li><strong>Seguimiento de leads</strong> — recibe una alerta si un lead no ha respondido en 48 horas</li>
+      </ul>
+
+      <h3>Para negocios con web</h3>
+      <ul>
+        <li><strong>Lead magnet automático</strong> — envía el PDF prometido al instante cuando alguien se suscribe</li>
+        <li><strong>Reseñas en piloto automático</strong> — pide reseñas a clientes satisfechos automáticamente</li>
+        <li><strong>Sincronización de inventario</strong> — actualiza stock en múltiples plataformas desde un solo lugar</li>
+        <li><strong>Alertas de menciones</strong> — recibe notificación cuando alguien menciona tu marca online</li>
+      </ul>
+
+      <h2 id="make-e-ia">5. Make + IA: la combinación ganadora</h2>
+      <p>Lo que hace a Make especialmente potente en 2025 es su integración con herramientas de IA. Puedes añadir un módulo de <strong>OpenAI / Claude / Gemini</strong> en medio de cualquier flujo:</p>
+
+      <div class="scenario">
+        <div class="scenario-title">🤖 Escenario avanzado: Lead → IA → Email personalizado</div>
+        <div class="scenario-steps">
+          <div class="scenario-step">
+            <div class="step-dot">1</div>
+            <div><strong>Trigger:</strong> Nuevo lead en tu formulario con nombre, empresa y mensaje</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">2</div>
+            <div><strong>IA (OpenAI):</strong> Make le pasa los datos al módulo de OpenAI y le pide que redacte un email personalizado de respuesta basado en lo que escribió el lead</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">3</div>
+            <div><strong>Gmail:</strong> Make envía ese email personalizado automáticamente en tu nombre</div>
+          </div>
+          <div class="scenario-step">
+            <div class="step-dot">4</div>
+            <div><strong>Notion:</strong> Guarda el lead + el email enviado en tu CRM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <p>🚀 <strong>Resultado real:</strong> cada lead recibe una respuesta personalizada en menos de 2 minutos, a cualquier hora, sin que tú hagas nada. Tasa de respuesta típica: aumenta un 40-60%.</p>
+      </div>
+
+      <h2 id="gratis-vs-pago">6. Plan gratuito vs planes de pago</h2>
+      <p>El plan gratuito de Make incluye:</p>
+      <ul>
+        <li>1.000 operaciones al mes</li>
+        <li>2 escenarios activos</li>
+        <li>Intervalo mínimo de ejecución: 15 minutos</li>
+        <li>Acceso a todas las apps (más de 1.500)</li>
+      </ul>
+      <p>El plan Core (~9$/mes) sube a 10.000 operaciones y ejecuciones cada minuto. Para la mayoría de autónomos y pequeños negocios, el gratuito o el Core son más que suficientes.</p>
+
+      <h2 id="empezar">7. Por dónde empezar si eres nuevo</h2>
+      <ol>
+        <li><strong>Crea tu cuenta gratis</strong> con nuestro enlace (1.000 ops/mes incluidas)</li>
+        <li>Elige el escenario más sencillo que resuelva un problema real tuyo</li>
+        <li>Conecta solo 2 aplicaciones al principio — no compliques el primer flujo</li>
+        <li>Prueba el escenario con datos reales antes de activarlo</li>
+        <li>Una vez funcionando, añade más pasos o crea nuevos escenarios</li>
+      </ol>
+
+      <div class="callout">
+        <p>💡 <strong>El mejor primer escenario:</strong> formulario de contacto → Google Sheets. Simple, útil desde el minuto 1 y te enseña los conceptos básicos de Make en menos de 20 minutos.</p>
+      </div>
+
+    </div>
+
+    <!-- BANNER AFILIADO FINAL (link real) -->
+    <div class="aff-banner-hero" style="margin-top:40px">
+      <div class="badge">🎯 Empieza hoy</div>
+      <h3>Regístrate en Make con nuestro enlace</h3>
+      <p>Plan gratuito con 1.000 operaciones al mes. Sin tarjeta. Cancela cuando quieras.</p>
+      <div class="aff-cta-row">
+        <a href="https://www.make.com/en/register?pc=berespa" target="_blank" rel="noopener" class="aff-cta-btn">Crear cuenta en Make →</a>
+        <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+      </div>
+    </div>
+
+    <div style="margin-top:8px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot">[AdSense 728×90]</div>
+    </div>
+
+    <div class="module-cta">
+      <h3>Siguiente módulo recomendado</h3>
+      <p>Combina Make con Notion para crear un sistema de productividad completamente automatizado.</p>
+      <a href="notion-ia.html" class="btn-primary">Ver módulo: Notion →</a>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; font-size:0.87rem; padding-top:22px; border-top:1px solid var(--border);">
+      <a href="claude-ia.html" style="color:var(--muted)">← Claude IA</a>
+      <a href="notion-ia.html" style="color:var(--accent2)">Notion con IA →</a>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="toc">
+      <h3>Contenido</h3>
+      <ol>
+        <li><a href="#que-es">¿Qué es Make?</a></li>
+        <li><a href="#conceptos">3 conceptos clave</a></li>
+        <li><a href="#primeros-pasos">Tu primer escenario</a></li>
+        <li><a href="#automatizaciones">10 automatizaciones útiles</a></li>
+        <li><a href="#make-e-ia">Make + IA</a></li>
+        <li><a href="#gratis-vs-pago">Gratis vs pago</a></li>
+        <li><a href="#empezar">Por dónde empezar</a></li>
+      </ol>
+    </div>
+
+    <!-- SIDEBAR AFILIADO MAKE -->
+    <div style="background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(34,211,165,0.06));border:1px solid rgba(108,99,255,0.25);border-radius:14px;padding:20px;margin-top:16px;text-align:center;">
+      <div style="font-size:1.6rem;margin-bottom:10px">⚙️</div>
+      <div style="font-family:var(--ff2);font-size:0.9rem;font-weight:700;margin-bottom:6px">Make.com</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-bottom:14px">1.000 ops/mes gratis</div>
+      <a href="https://www.make.com/en/register?pc=berespa" target="_blank" rel="noopener" style="display:block;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;padding:10px;border-radius:9px;font-weight:700;font-size:0.85rem;text-align:center;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Probar gratis →</a>
+      <div style="font-size:0.68rem;color:var(--muted);margin-top:8px;opacity:.6">Enlace de afiliado</div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot" style="min-height:250px;max-width:280px;">[AdSense 300×250]</div>
+    </div>
+
+    <div class="sidebar-related">
+      <h4>Otros módulos</h4>
+      <ul>
+        <li><a href="claude-ia.html">🤖 Claude IA</a></li>
+        <li><a href="notion-ia.html">📋 Notion con IA</a></li>
+        <li><a href="chatgpt-guia-completa.html">💬 ChatGPT desde cero</a></li>
+        <li><a href="prompts-profesionales.html">⚡ Prompts Profesionales</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>© 2025 Berespa.com — Aprende IA gratis en español</footer>
+
+<!-- ── PROGRESS TRACKING ── -->
+<style>
+  #progress-bar-fixed {
+    position:fixed; bottom:0; left:0; right:0; z-index:200;
+    background:rgba(8,9,13,.95); backdrop-filter:blur(16px);
+    border-top:1px solid rgba(255,255,255,.07);
+    padding:12px 24px;
+    display:flex; align-items:center; gap:16px;
+    transform:translateY(100%); transition:transform .35s ease;
+  }
+  #progress-bar-fixed.show { transform:translateY(0); }
+  #progress-bar-fixed .bar-wrap {
+    flex:1; background:rgba(255,255,255,.07); border-radius:100px; height:6px; overflow:hidden;
+  }
+  #progress-bar-fixed .bar-fill {
+    height:100%; background:linear-gradient(90deg,#6c63ff,#22d3a5);
+    border-radius:100px; transition:width .4s ease;
+  }
+  #progress-bar-fixed .bar-pct {
+    font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif;
+  }
+  #btn-completar {
+    background:linear-gradient(135deg,#22d3a5,#059669);
+    color:#fff; border:none; padding:8px 18px; border-radius:8px;
+    font-weight:700; font-size:.82rem; cursor:pointer; white-space:nowrap;
+    font-family:'Inter',sans-serif; transition:opacity .2s;
+  }
+  #btn-completar:hover { opacity:.85; }
+  #btn-completar:disabled { opacity:.5; cursor:default; }
+  #btn-completar.done { background:linear-gradient(135deg,#22d3a5,#059669); }
+  #user-chip {
+    font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif;
+  }
+  #user-chip a { color:#a78bfa; text-decoration:none; }
+  #user-chip a:hover { text-decoration:underline; }
+</style>
+
+<div id="progress-bar-fixed">
+  <div id="user-chip">Cargando...</div>
+  <div class="bar-wrap"><div class="bar-fill" id="scroll-fill" style="width:0%"></div></div>
+  <div class="bar-pct" id="scroll-pct">0%</div>
+  <button id="btn-completar" onclick="completarModulo()">Marcar completado</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/sb.js"></script>
+<script>
+  const MODULO_SLUG   = 'make-automatizacion';
+  const MODULO_TITULO = 'Make: Automatiza tu Negocio sin Código';
+
+  // ── Barra de scroll ──
+  window.addEventListener('scroll', () => {
+    const el  = document.documentElement;
+    const pct = Math.round(el.scrollTop / (el.scrollHeight - el.clientHeight) * 100);
+    document.getElementById('scroll-fill').style.width = pct + '%';
+    document.getElementById('scroll-pct').textContent  = pct + '%';
+  });
+
+  // ── Init: mostrar barra y registrar visita ──
+  (async () => {
+    await new Promise(r => setTimeout(r, 400));
+    document.getElementById('progress-bar-fixed').classList.add('show');
+
+    const user = await getUser();
+    const chip = document.getElementById('user-chip');
+    const btn  = document.getElementById('btn-completar');
+
+    if (!user) {
+      chip.innerHTML = '<a href="../auth.html">Inicia sesión</a> para guardar progreso';
+      btn.style.display = 'none';
+      return;
+    }
+
+    const nombre = user.user_metadata?.nombre || user.email.split('@')[0];
+    chip.innerHTML = `👤 ${nombre} &nbsp;·&nbsp; <a href="../mi-progreso.html">Mi progreso</a>`;
+
+    // Registrar visita
+    await marcarVisto(MODULO_SLUG, MODULO_TITULO);
+
+    // Si ya estaba completado, actualizar botón
+    const yaCompletado = await isCompletado(MODULO_SLUG);
+    if (yaCompletado) {
+      btn.textContent  = '✓ Completado';
+      btn.disabled     = true;
+      btn.classList.add('done');
+    }
+  })();
+
+  async function completarModulo() {
+    const btn = document.getElementById('btn-completar');
+    btn.disabled    = true;
+    btn.textContent = 'Guardando...';
+
+    const ok = await marcarCompletado(MODULO_SLUG, MODULO_TITULO);
+    if (ok) {
+      btn.textContent = '✓ Completado';
+      btn.classList.add('done');
+    } else {
+      btn.textContent = 'Error — reintentar';
+      btn.disabled    = false;
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berespa — Aprende Inteligencia Artificial Gratis en Español</title>
+  <meta name="description" content="Aprende IA gratis en español. Módulos prácticos de ChatGPT, automatización, prompts y herramientas de inteligencia artificial para tu negocio.">
+  <meta name="keywords" content="aprender inteligencia artificial gratis, cursos IA español, ChatGPT tutorial, automatización IA, prompts IA">
+
+  <!-- Open Graph para TikTok/Redes -->
+  <meta property="og:title" content="Berespa — Aprende IA Gratis">
+  <meta property="og:description" content="La plataforma en español para aprender inteligencia artificial sin pagar nada. Módulos prácticos, herramientas reales.">
+  <meta property="og:image" content="https://berespa.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://berespa.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ============================================================
+       GOOGLE ADSENSE — reemplaza ca-pub-XXXXXXXXXX con tu ID real
+  ============================================================ -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #08090d;
+      --bg2:        #0f1117;
+      --bg3:        #161820;
+      --border:     rgba(255,255,255,0.07);
+      --accent:     #6c63ff;
+      --accent2:    #a78bfa;
+      --green:      #22d3a5;
+      --text:       #e8eaf0;
+      --muted:      #7c8098;
+      --ff:         'Inter', sans-serif;
+      --ff2:        'Space Grotesk', sans-serif;
+      --radius:     12px;
+      --shadow:     0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,9,13,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--ff2);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent2), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: opacity .2s !important;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      color: var(--accent2);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: var(--ff2);
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.12;
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent2), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,99,255,0.5); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--ff2);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── ADSENSE SLOT ── */
+    .ad-slot {
+      width: 100%;
+      max-width: 728px;
+      margin: 0 auto;
+      min-height: 90px;
+      background: var(--bg2);
+      border: 1px dashed rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: .5px;
+    }
+
+    .ad-wrapper {
+      padding: 24px 24px 8px;
+      text-align: center;
+    }
+    .ad-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--ff2);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── MÓDULOS ── */
+    #modulos { background: var(--bg2); }
+
+    .modulos-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .modulos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .modulo-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+    }
+    .modulo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(108,99,255,0.35);
+      box-shadow: 0 12px 40px rgba(108,99,255,0.12);
+    }
+
+    .modulo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .modulo-card:hover::before { opacity: 1; }
+
+    .modulo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .modulo-nivel {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .nivel-basico { background: rgba(34,211,165,0.12); color: var(--green); }
+    .nivel-intermedio { background: rgba(108,99,255,0.12); color: var(--accent2); }
+    .nivel-avanzado { background: rgba(239,68,68,0.1); color: #f87171; }
+
+    .modulo-card h3 {
+      font-family: var(--ff2);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .modulo-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modulo-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .modulo-free {
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+
+    .modulo-lessons {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── CÓMO FUNCIONA ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .step {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff2);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-family: var(--ff2);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── HERRAMIENTAS ── */
+    #herramientas { background: var(--bg2); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .tool-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+      cursor: pointer;
+    }
+    .tool-card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-2px); }
+
+    .tool-emoji { font-size: 2rem; margin-bottom: 10px; }
+    .tool-name { font-family: var(--ff2); font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .tool-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── BLOG/ARTÍCULOS ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .blog-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
+      display: block;
+    }
+    .blog-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.12); }
+
+    .blog-img {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--bg3), var(--bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .blog-body { padding: 24px; }
+
+    .blog-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .blog-card h3 {
+      font-family: var(--ff2);
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .blog-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .blog-date { font-size: 0.78rem; color: var(--muted); margin-top: 16px; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(34,211,165,0.08));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .cta-section h2 {
+      font-family: var(--ff2);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p { font-size: 1.05rem; color: var(--muted); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: var(--ff);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form input::placeholder { color: var(--muted); }
+
+    .newsletter-form button {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      border: none;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: var(--ff);
+      transition: opacity .2s;
+    }
+    .newsletter-form button:hover { opacity: .85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+    }
+
+    .footer-brand p { font-size: 0.88rem; color: var(--muted); margin-top: 12px; line-height: 1.6; max-width: 260px; }
+
+    .footer-col h4 {
+      font-family: var(--ff2);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { font-size: 0.88rem; color: var(--muted); transition: color .2s; }
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+        gap: 16px;
+      }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 28px; }
+      .modulos-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 20px 40px; }
+    }
+
+    /* ── AFILIADOS ── */
+    .aff-featured {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      background: var(--bg2);
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin: 40px 0 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .aff-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+    }
+    .aff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.25);
+      padding: 4px 12px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 16px;
+    }
+    .aff-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .aff-featured-left h3 {
+      font-family: var(--ff2);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .aff-featured-left p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 520px;
+    }
+    .aff-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 28px;
+    }
+    .aff-bullets li {
+      font-size: 0.9rem;
+      color: var(--green);
+      font-weight: 500;
+    }
+    .aff-cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: opacity .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.35);
+    }
+    .aff-cta-btn:hover { opacity: .88; transform: translateY(-1px); text-decoration: none; }
+    .aff-disclosure {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 10px;
+      opacity: .6;
+    }
+    .aff-featured-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+    }
+    .aff-visual {
+      font-size: 5rem;
+      opacity: .15;
+      user-select: none;
+    }
+
+    .aff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .aff-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .aff-card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-2px); }
+    .aff-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .aff-emoji { font-size: 1.8rem; }
+    .aff-name { font-family: var(--ff2); font-size: 0.97rem; font-weight: 600; }
+    .aff-plan { font-size: 0.75rem; color: var(--green); margin-top: 2px; font-weight: 500; }
+    .aff-card-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .aff-link {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent2);
+      transition: color .2s;
+    }
+    .aff-link:hover { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .aff-featured { grid-template-columns: 1fr; padding: 28px 24px; }
+      .aff-featured-right { display: none; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="/" class="logo">berespa</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#modulos">Módulos</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div id="nav-auth"></div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-badge">✦ 100% Gratis en Español</div>
+  <h1>Aprende <span>Inteligencia Artificial</span> y transforma tu vida</h1>
+  <p>Módulos prácticos, herramientas reales y guías paso a paso para dominar la IA aunque empieces desde cero.</p>
+  <div class="hero-btns">
+    <a href="#modulos" class="btn-primary">Ver módulos gratuitos →</a>
+    <a href="#como-funciona" class="btn-secondary">¿Cómo funciona?</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">24+</div>
+      <div class="stat-label">Módulos gratuitos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Herramientas IA</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0€</div>
+      <div class="stat-label">Coste total</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AD SLOT 1 (banner horizontal) ── -->
+<div class="ad-wrapper">
+  <div class="ad-label">Publicidad</div>
+  <div class="ad-slot">
+    <!-- AdSense Banner 728x90
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    [AdSense 728×90 — pendiente de activar]
+  </div>
+</div>
+
+<!-- ── MÓDULOS ── -->
+<section id="modulos">
+  <div class="container">
+    <div class="modulos-header reveal">
+      <div>
+        <div class="section-label">Aprendizaje</div>
+        <h2 class="section-title">Módulos gratuitos de IA</h2>
+        <p class="section-sub">Desde cero hasta avanzado. Aprende a tu ritmo, sin registro, sin tarjeta.</p>
+      </div>
+      <a href="modulos/index.html" class="btn-secondary" style="white-space:nowrap">Ver todos →</a>
+    </div>
+
+    <div class="modulos-grid">
+
+      <!-- MÓDULO 1 — MAKE (afiliado real) -->
+      <a href="modulos/make-automatizacion.html" class="modulo-card reveal" style="border-color:rgba(108,99,255,0.35)">
+        <div style="position:absolute;top:16px;right:16px;font-size:0.68rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px">⭐ Recomendado</div>
+        <div class="modulo-icon" style="background:rgba(108,99,255,0.12)">⚙️</div>
+        <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+        <h3>Make: Automatiza tu Negocio sin Código</h3>
+        <p>Conecta tus apps favoritas y crea flujos automáticos que trabajan por ti 24/7. 1.000 ops gratis al mes.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 7 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+      <!-- MÓDULO 2 — ELEVENLABS (afiliado real) -->
+      <a href="modulos/elevenlabs-voces-ia.html" class="modulo-card reveal" style="border-color:rgba(34,211,165,0.35)">
+        <div style="position:absolute;top:16px;right:16px;font-size:0.68rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px">⭐ Recomendado</div>
+        <div class="modulo-icon" style="background:rgba(34,211,165,0.12)">🎙️</div>
+        <span class="modulo-nivel nivel-basico">Básico</span>
+        <h3>ElevenLabs: Voces IA Realistas en Español</h3>
+        <p>Genera narraciones profesionales, clona tu voz y dobla vídeos automáticamente con IA.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 8 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+      <!-- MÓDULO 3 -->
+      <a href="modulos/claude-ia.html" class="modulo-card reveal">
+        <div class="modulo-icon" style="background:rgba(167,139,250,0.12)">🤖</div>
+        <span class="modulo-nivel nivel-basico">Básico</span>
+        <h3>Claude IA: Guía Completa</h3>
+        <p>La IA de Anthropic que domina el análisis de textos, escritura larga y razonamiento. Con comparativa vs ChatGPT.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 7 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+      <!-- MÓDULO 4 -->
+      <a href="modulos/notion-ia.html" class="modulo-card reveal">
+        <div class="modulo-icon" style="background:rgba(251,191,36,0.1)">📋</div>
+        <span class="modulo-nivel nivel-basico">Básico</span>
+        <h3>Notion con IA: Organiza tu Vida y Negocio</h3>
+        <p>Notas, proyectos, CRM y base de conocimiento en un solo lugar. Con IA integrada para resumir y crear.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 8 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+      <!-- MÓDULO 5 -->
+      <a href="modulos/chatgpt-guia-completa.html" class="modulo-card reveal">
+        <div class="modulo-icon" style="background:rgba(108,99,255,0.12)">💬</div>
+        <span class="modulo-nivel nivel-basico">Básico</span>
+        <h3>ChatGPT: Guía Completa desde Cero</h3>
+        <p>Aprende a usar ChatGPT para trabajar más rápido, escribir mejor y automatizar tareas cotidianas.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 8 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+      <!-- MÓDULO 6 -->
+      <a href="modulos/ia-para-creadores.html" class="modulo-card reveal">
+        <div class="modulo-icon" style="background:rgba(239,68,68,0.1)">🎨</div>
+        <span class="modulo-nivel nivel-avanzado">Avanzado</span>
+        <h3>IA para Creadores de Contenido</h3>
+        <p>Genera vídeos, imágenes, guiones y estrategias de contenido con IA. Ideal para TikTok y YouTube.</p>
+        <div class="modulo-meta">
+          <span class="modulo-lessons">📖 11 lecciones</span>
+          <span class="modulo-free">✓ Gratis</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom: 0">
+      <div class="section-label">El proceso</div>
+      <h2 class="section-title">Aprende en 4 pasos simples</h2>
+      <p class="section-sub" style="margin: 0 auto">Sin complicaciones, sin registro obligatorio. Solo abre el módulo y empieza.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Elige tu módulo</h3>
+        <p>Selecciona el tema que más te interesa. Tenemos desde nivel básico hasta avanzado.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>Aprende con ejemplos reales</h3>
+        <p>Cada lección incluye ejemplos prácticos, ejercicios y plantillas listas para usar.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>Practica con las herramientas</h3>
+        <p>Accede a nuestra guía de herramientas IA recomendadas, muchas de ellas gratuitas.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h3>Aplica en tu vida o negocio</h3>
+        <p>Empieza a usar la IA en tu trabajo, negocio o proyectos personales desde el primer día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HERRAMIENTAS AFILIADOS ── -->
+<section id="herramientas">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Herramientas recomendadas</div>
+      <h2 class="section-title">Las herramientas que nosotros usamos</h2>
+      <p class="section-sub">Las probamos, las usamos a diario y te las recomendamos. Algunas tienen plan gratuito.</p>
+    </div>
+
+    <!-- DESTACADO: Make.com (afiliado real) -->
+    <div class="aff-featured reveal">
+      <div class="aff-featured-left">
+        <div class="aff-badge">⭐ Recomendado</div>
+        <div class="aff-icon">⚙️</div>
+        <h3>Make.com — Automatización sin código</h3>
+        <p>Conecta tus apps y automatiza tareas repetitivas sin saber programar. Usamos Make para automatizar publicaciones, gestionar leads y ahorrar horas cada semana. Plan gratuito disponible.</p>
+        <ul class="aff-bullets">
+          <li>✓ 1.000 operaciones gratis al mes</li>
+          <li>✓ Conecta +1.500 aplicaciones</li>
+          <li>✓ Sin tarjeta para empezar</li>
+        </ul>
+        <a href="https://www.make.com/en/register?pc=berespa" target="_blank" rel="noopener" class="aff-cta-btn">Probar Make gratis →</a>
+        <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+      </div>
+      <div class="aff-featured-right">
+        <div class="aff-visual">⚙️</div>
+      </div>
+    </div>
+
+    <!-- GRID otras herramientas -->
+    <div class="aff-grid">
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">💬</span>
+          <div>
+            <div class="aff-name">ChatGPT</div>
+            <div class="aff-plan">Plan gratuito disponible</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">El asistente IA más usado del mundo. Imprescindible para escribir, resumir y crear contenido.</p>
+        <a href="https://chat.openai.com" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">🤖</span>
+          <div>
+            <div class="aff-name">Claude (Anthropic)</div>
+            <div class="aff-plan">Plan gratuito disponible</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">Mejor que ChatGPT para textos largos, análisis y razonamiento. Nuestro favorito para escribir.</p>
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">🎙️</span>
+          <div>
+            <div class="aff-name">ElevenLabs</div>
+            <div class="aff-plan">Plan gratuito disponible</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">Genera voces en off realistas para vídeos, podcasts y contenido con IA. En español perfecto.</p>
+        <a href="https://elevenlabs.io" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">🎨</span>
+          <div>
+            <div class="aff-name">Midjourney</div>
+            <div class="aff-plan">Desde 10$/mes</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">Genera imágenes espectaculares con texto. La herramienta de referencia para creadores visuales.</p>
+        <a href="https://midjourney.com" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">🔍</span>
+          <div>
+            <div class="aff-name">Perplexity</div>
+            <div class="aff-plan">Plan gratuito disponible</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">Búsquedas con IA que citan fuentes. Ideal para investigar temas rápido sin ruido.</p>
+        <a href="https://perplexity.ai" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+      <div class="aff-card reveal">
+        <div class="aff-card-top">
+          <span class="aff-emoji">🎬</span>
+          <div>
+            <div class="aff-name">Runway</div>
+            <div class="aff-plan">Plan gratuito disponible</div>
+          </div>
+        </div>
+        <p class="aff-card-desc">Genera y edita vídeos con IA. Perfecta para crear contenido visual para TikTok y Reels.</p>
+        <a href="https://runwayml.com" target="_blank" rel="noopener" class="aff-link">Ver herramienta →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG / ARTÍCULOS SEO ── -->
+<section id="blog">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Blog</div>
+      <h2 class="section-title">Últimos artículos</h2>
+      <p class="section-sub">Guías, tutoriales y noticias sobre IA en español, actualizados cada semana.</p>
+    </div>
+    <div class="blog-grid">
+      <a href="blog/mejores-prompts-chatgpt-2025.html" class="blog-card reveal">
+        <div class="blog-img">⚡</div>
+        <div class="blog-body">
+          <div class="blog-tag">Prompts</div>
+          <h3>Los 50 mejores prompts de ChatGPT para 2025</h3>
+          <p>Copia y pega estos prompts probados para escribir, crear contenido, analizar datos y más.</p>
+          <div class="blog-date">Junio 2025 · 8 min lectura</div>
+        </div>
+      </a>
+      <a href="blog/como-ganar-dinero-con-ia.html" class="blog-card reveal">
+        <div class="blog-img">💰</div>
+        <div class="blog-body">
+          <div class="blog-tag">Negocios</div>
+          <h3>Cómo ganar dinero con Inteligencia Artificial en 2025</h3>
+          <p>7 formas reales y probadas de generar ingresos usando herramientas de IA sin ser programador.</p>
+          <div class="blog-date">Mayo 2025 · 10 min lectura</div>
+        </div>
+      </a>
+      <a href="blog/ia-para-tiktok.html" class="blog-card reveal">
+        <div class="blog-img">📱</div>
+        <div class="blog-body">
+          <div class="blog-tag">Redes Sociales</div>
+          <h3>Crea contenido para TikTok con IA en menos de 10 minutos</h3>
+          <p>Guión, voz, subtítulos y edición automática. El flujo completo para creadores con IA.</p>
+          <div class="blog-date">Mayo 2025 · 6 min lectura</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">¿Listo para dominar la IA?</h2>
+    <p class="reveal">Únete a nuestra newsletter y recibe cada semana los mejores recursos, prompts y guías de IA en español.</p>
+    <form class="newsletter-form reveal" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="Tu email aquí..." required>
+      <button type="submit">Suscribirme gratis</button>
+    </form>
+    <p style="margin-top:16px; font-size:0.78rem; color:var(--muted)">Sin spam. Cancela cuando quieras.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">berespa</div>
+      <p>La plataforma en español para aprender Inteligencia Artificial gratis. Módulos prácticos, herramientas reales.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Módulos</h4>
+      <ul>
+        <li><a href="modulos/que-es-la-ia.html">¿Qué es la IA?</a></li>
+        <li><a href="modulos/chatgpt-guia-completa.html">ChatGPT</a></li>
+        <li><a href="modulos/prompts-profesionales.html">Prompts</a></li>
+        <li><a href="modulos/ia-para-negocios.html">IA para Negocios</a></li>
+        <li><a href="modulos/automatizacion-n8n.html">Automatización</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <ul>
+        <li><a href="#herramientas">Herramientas IA</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="blog/mejores-prompts-chatgpt-2025.html">Prompts</a></li>
+        <li><a href="blog/como-ganar-dinero-con-ia.html">Ganar con IA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacidad.html">Privacidad</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+        <li><a href="aviso-legal.html">Aviso Legal</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Berespa.com — Todos los derechos reservados</span>
+    <span>Hecho con ❤️ en España</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/sb.js"></script>
+<script>
+  // ── Menú móvil ──
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Auth nav ──
+  if (typeof initNav === 'function') initNav();
+
+  // ── Newsletter ──
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const input = e.target.querySelector('input');
+    btn.textContent = '✓ ¡Suscrito!';
+    btn.style.background = 'var(--green)';
+    input.value = '';
+    setTimeout(() => {
+      btn.textContent = 'Suscribirme gratis';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+
+<!-- ═══════════════════════════════════════════
+     THEME SWITCHER
+════════════════════════════════════════════ -->
+<style>
+  /* Floating trigger */
+  #theme-trigger {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(15,17,23,0.85);
+    backdrop-filter: blur(16px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+  }
+  #theme-trigger:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.22);
+  }
+  #theme-trigger.open {
+    transform: rotate(30deg) scale(1.05);
+  }
+
+  /* Panel */
+  #theme-panel {
+    position: fixed;
+    bottom: 88px;
+    right: 28px;
+    z-index: 9998;
+    background: rgba(13,14,20,0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    padding: 20px;
+    width: 220px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    transform-origin: bottom right;
+    transform: scale(0.85) translateY(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1), opacity .22s ease;
+  }
+  #theme-panel.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #theme-panel h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 14px;
+  }
+
+  .theme-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    transition: background .18s, border-color .18s, color .18s;
+    width: 100%;
+    text-align: left;
+  }
+  .theme-btn:hover {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.9);
+  }
+  .theme-btn.active {
+    border-color: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+  }
+
+  .theme-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-swatch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Swatch gradients per theme */
+  .swatch-purple { background: linear-gradient(135deg, #6c63ff, #22d3a5); }
+  .swatch-green  { background: linear-gradient(135deg, #10b981, #34d399); }
+  .swatch-amber  { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+  .swatch-light  { background: linear-gradient(135deg, #e2e8f0, #94a3b8); }
+
+  /* Active dot */
+  .theme-btn.active .theme-swatch::before {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+
+  /* ── Light theme overrides ── */
+  [data-theme="light"] {
+    --bg: #f8f9fc;
+    --bg2: #ffffff;
+    --bg3: #f1f3f8;
+    --border: rgba(0,0,0,0.08);
+    --text: #0f1117;
+    --muted: #6b7280;
+    --accent: #4f46e5;
+    --accent2: #7c3aed;
+    --green: #059669;
+  }
+  [data-theme="light"] nav {
+    background: rgba(248,249,252,0.88);
+    border-bottom-color: rgba(0,0,0,0.07);
+  }
+  [data-theme="light"] #theme-panel {
+    background: rgba(255,255,255,0.95);
+    border-color: rgba(0,0,0,0.08);
+  }
+  [data-theme="light"] #theme-trigger {
+    background: rgba(255,255,255,0.9);
+    border-color: rgba(0,0,0,0.1);
+  }
+  [data-theme="light"] .theme-btn { color: rgba(0,0,0,0.5); }
+  [data-theme="light"] .theme-btn:hover { color: rgba(0,0,0,0.85); background: rgba(0,0,0,0.04); }
+  [data-theme="light"] .theme-btn.active { color: #0f1117; border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.04); }
+  [data-theme="light"] #theme-panel h4 { color: rgba(0,0,0,0.3); }
+  [data-theme="light"] .hero::before { background: radial-gradient(circle, rgba(79,70,229,0.08) 0%, transparent 70%); }
+  [data-theme="light"] .stat-num { color: var(--accent2); }
+  [data-theme="light"] .ad-slot { background: #f1f3f8; border-color: rgba(0,0,0,0.07); color: #9ca3af; }
+  [data-theme="light"] .modulo-card { background: #ffffff; }
+  [data-theme="light"] .step { background: #ffffff; }
+  [data-theme="light"] .blog-card { background: #ffffff; }
+  [data-theme="light"] .blog-img { background: linear-gradient(135deg, #f1f3f8, #e2e8f0); }
+  [data-theme="light"] .cta-section { background: linear-gradient(135deg, rgba(79,70,229,0.06), rgba(5,150,105,0.04)); }
+  [data-theme="light"] .newsletter-form input { background: #f1f3f8; border-color: rgba(0,0,0,0.1); color: #0f1117; }
+  [data-theme="light"] footer { background: #ffffff; }
+  [data-theme="light"] .tool-card { background: #f8f9fc; }
+</style>
+
+<div id="theme-trigger" title="Cambiar tema" onclick="toggleThemePanel()">🎨</div>
+
+<div id="theme-panel">
+  <h4>Tema visual</h4>
+  <div class="theme-options">
+    <button class="theme-btn" data-theme="purple" onclick="applyTheme('purple',this)">
+      <div class="theme-swatch swatch-purple"></div>
+      Violeta oscuro
+    </button>
+    <button class="theme-btn" data-theme="green" onclick="applyTheme('green',this)">
+      <div class="theme-swatch swatch-green"></div>
+      Verde noche
+    </button>
+    <button class="theme-btn" data-theme="amber" onclick="applyTheme('amber',this)">
+      <div class="theme-swatch swatch-amber"></div>
+      Ámbar / fuego
+    </button>
+    <button class="theme-btn" data-theme="light" onclick="applyTheme('light',this)">
+      <div class="theme-swatch swatch-light"></div>
+      Claro minimal
+    </button>
+  </div>
+</div>
+
+<script>
+  const THEMES = {
+    purple: {
+      '--accent':  '#6c63ff',
+      '--accent2': '#a78bfa',
+      '--green':   '#22d3a5',
+      '--bg':      '#08090d',
+      '--bg2':     '#0f1117',
+      '--bg3':     '#161820',
+      '--text':    '#e8eaf0',
+      '--muted':   '#7c8098',
+      '--border':  'rgba(255,255,255,0.07)',
+    },
+    green: {
+      '--accent':  '#10b981',
+      '--accent2': '#34d399',
+      '--green':   '#6ee7b7',
+      '--bg':      '#030a06',
+      '--bg2':     '#071410',
+      '--bg3':     '#0d1f18',
+      '--text':    '#e6f4ef',
+      '--muted':   '#6b8f80',
+      '--border':  'rgba(16,185,129,0.1)',
+    },
+    amber: {
+      '--accent':  '#f59e0b',
+      '--accent2': '#fbbf24',
+      '--green':   '#ef4444',
+      '--bg':      '#0c0800',
+      '--bg2':     '#130f02',
+      '--bg3':     '#1c1604',
+      '--text':    '#f5ead0',
+      '--muted':   '#8a7550',
+      '--border':  'rgba(245,158,11,0.1)',
+    },
+    light: null, // handled by [data-theme="light"] CSS
+  };
+
+  function applyTheme(name, btn) {
+    const root = document.documentElement;
+    const html = document.querySelector('html');
+
+    // Remove previous data-theme
+    html.removeAttribute('data-theme');
+
+    if (name === 'light') {
+      html.setAttribute('data-theme', 'light');
+    } else {
+      const vars = THEMES[name];
+      Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
+    }
+
+    // Reset non-light themes CSS vars when switching away from light
+    if (name !== 'light') {
+      const vars = THEMES[name];
+      Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
+    }
+
+    localStorage.setItem('berespa-theme', name);
+
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    else document.querySelector(`.theme-btn[data-theme="${name}"]`)?.classList.add('active');
+
+    // Close panel
+    setTimeout(() => closeThemePanel(), 320);
+  }
+
+  function toggleThemePanel() {
+    const panel = document.getElementById('theme-panel');
+    const trigger = document.getElementById('theme-trigger');
+    panel.classList.toggle('open');
+    trigger.classList.toggle('open');
+  }
+
+  function closeThemePanel() {
+    document.getElementById('theme-panel').classList.remove('open');
+    document.getElementById('theme-trigger').classList.remove('open');
+  }
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#theme-panel') && !e.target.closest('#theme-trigger')) {
+      closeThemePanel();
+    }
+  });
+
+  // Load saved theme on page init
+  (function() {
+    const saved = localStorage.getItem('berespa-theme') || 'purple';
+    applyTheme(saved, null);
+  })();
+</script>
+
+</body>
+</html>

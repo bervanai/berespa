@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Progreso — Berespa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); min-height:100vh; }
+    a { color:inherit; text-decoration:none; }
+
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(8,9,13,.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 24px; height:64px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent2),var(--green));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    #nav-auth { display:flex; align-items:center; gap:16px; }
+
+    .container { max-width:960px; margin:0 auto; padding:48px 24px 80px; }
+
+    /* HEADER */
+    .dash-header {
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px; margin-bottom:40px;
+    }
+    .dash-header h1 { font-family:var(--ff2); font-size:1.8rem; font-weight:700; }
+    .dash-header p { font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+    /* STATS */
+    .stats-row {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:14px; margin-bottom:40px;
+    }
+    .stat-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:14px;
+      padding:20px 22px;
+    }
+    .stat-card .num {
+      font-family:var(--ff2); font-size:2rem; font-weight:700;
+      color:var(--accent2); line-height:1;
+    }
+    .stat-card .num.green { color:var(--green); }
+    .stat-card .lbl { font-size:.8rem; color:var(--muted); margin-top:6px; }
+
+    /* PROGRESS BAR */
+    .progress-section { margin-bottom:40px; }
+    .progress-section h2 { font-family:var(--ff2); font-size:1rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+    .progress-bar-wrap { background:var(--bg3); border-radius:100px; height:8px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--green)); border-radius:100px; transition:width .6s ease; }
+    .progress-label { font-size:.82rem; color:var(--muted); margin-top:8px; }
+
+    /* MÓDULOS LIST */
+    .section-title {
+      font-family:var(--ff2); font-size:1rem; font-weight:600;
+      color:var(--muted); text-transform:uppercase; letter-spacing:.5px;
+      margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border);
+    }
+
+    .modulo-row {
+      display:flex; align-items:center; gap:16px;
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:12px; padding:16px 20px; margin-bottom:10px;
+      transition:border-color .2s;
+    }
+    .modulo-row:hover { border-color:rgba(255,255,255,.12); }
+    .modulo-row.completado { border-color:rgba(34,211,165,.2); }
+
+    .modulo-status {
+      width:32px; height:32px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; font-size:.85rem;
+    }
+    .status-completado { background:rgba(34,211,165,.15); color:var(--green); }
+    .status-visto      { background:rgba(108,99,255,.15); color:var(--accent2); }
+    .status-pendiente  { background:var(--bg3); color:var(--muted); }
+
+    .modulo-info { flex:1; min-width:0; }
+    .modulo-info .titulo { font-family:var(--ff2); font-size:.92rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .modulo-info .meta { font-size:.76rem; color:var(--muted); margin-top:3px; }
+
+    .modulo-badge {
+      font-size:.7rem; font-weight:700; padding:3px 10px; border-radius:100px;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .badge-completado { background:rgba(34,211,165,.12); color:var(--green); }
+    .badge-visto      { background:rgba(108,99,255,.1);  color:var(--accent2); }
+    .badge-pendiente  { background:var(--bg3);           color:var(--muted); }
+
+    .modulo-link {
+      font-size:.8rem; color:var(--accent2); white-space:nowrap; flex-shrink:0;
+    }
+    .modulo-link:hover { text-decoration:underline; }
+
+    /* TODOS LOS MÓDULOS (no empezados) */
+    .todos-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:12px; margin-top:16px;
+    }
+    .todo-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:12px;
+      padding:16px 18px; display:flex; align-items:center; gap:14px;
+      transition:border-color .2s, transform .2s;
+    }
+    .todo-card:hover { border-color:rgba(108,99,255,.3); transform:translateY(-1px); }
+    .todo-emoji { font-size:1.4rem; flex-shrink:0; }
+    .todo-name { font-family:var(--ff2); font-size:.88rem; font-weight:600; }
+    .todo-meta { font-size:.76rem; color:var(--muted); margin-top:3px; }
+
+    /* LOADING */
+    .skeleton {
+      background:linear-gradient(90deg,var(--bg2) 25%,var(--bg3) 50%,var(--bg2) 75%);
+      background-size:200% 100%;
+      animation:shimmer 1.4s infinite;
+      border-radius:8px; height:60px; margin-bottom:10px;
+    }
+    @keyframes shimmer { to { background-position:-200% 0; } }
+
+    .empty-state {
+      text-align:center; padding:48px 24px;
+      background:var(--bg2); border:1px solid var(--border); border-radius:16px;
+    }
+    .empty-state .icon { font-size:2.5rem; margin-bottom:12px; }
+    .empty-state h3 { font-family:var(--ff2); font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+    .empty-state p { font-size:.88rem; color:var(--muted); margin-bottom:20px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:11px 24px; border-radius:10px; font-weight:600; font-size:.9rem; transition:opacity .2s; }
+    .btn-primary:hover { opacity:.85; }
+
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:24px; text-align:center; color:var(--muted); font-size:.83rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">berespa</a>
+  <div id="nav-auth"></div>
+</nav>
+
+<div class="container">
+
+  <div class="dash-header">
+    <div>
+      <h1>Mi progreso</h1>
+      <p id="saludo">Cargando...</p>
+    </div>
+    <a href="modulos/index.html" class="btn-primary">Ver todos los módulos →</a>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row" id="stats-row">
+    <div class="stat-card"><div class="num skeleton" style="height:32px;width:48px"></div></div>
+    <div class="stat-card"><div class="num skeleton" style="height:32px;width:48px"></div></div>
+    <div class="stat-card"><div class="num skeleton" style="height:32px;width:48px"></div></div>
+  </div>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="progress-section" id="progress-section" style="display:none">
+    <h2>Progreso total</h2>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progress-label"></div>
+  </div>
+
+  <!-- MÓDULOS CON ACTIVIDAD -->
+  <div id="actividad-section">
+    <div class="section-title">Actividad reciente</div>
+    <div id="actividad-list">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+  </div>
+
+  <!-- MÓDULOS PENDIENTES -->
+  <div id="pendientes-section" style="margin-top:40px; display:none">
+    <div class="section-title">Módulos pendientes</div>
+    <div class="todos-grid" id="pendientes-grid"></div>
+  </div>
+
+</div>
+
+<footer>© 2025 Berespa.com</footer>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/sb.js"></script>
+<script>
+  // Catálogo completo de módulos
+  const TODOS_MODULOS = [
+    { slug:'make-automatizacion',    titulo:'Make: Automatiza tu Negocio sin Código',      emoji:'⚙️', url:'modulos/make-automatizacion.html' },
+    { slug:'elevenlabs-voces-ia',    titulo:'ElevenLabs: Voces IA Realistas en Español',    emoji:'🎙️', url:'modulos/elevenlabs-voces-ia.html' },
+    { slug:'claude-ia',              titulo:'Claude IA: Guía Completa',                      emoji:'🤖', url:'modulos/claude-ia.html' },
+    { slug:'notion-ia',              titulo:'Notion con IA: Organiza tu Vida y Negocio',     emoji:'📋', url:'modulos/notion-ia.html' },
+    { slug:'chatgpt-guia-completa',  titulo:'ChatGPT: Guía Completa desde Cero',             emoji:'💬', url:'modulos/chatgpt-guia-completa.html' },
+    { slug:'que-es-la-ia',           titulo:'¿Qué es la Inteligencia Artificial?',           emoji:'🧠', url:'modulos/que-es-la-ia.html' },
+    { slug:'prompts-profesionales',  titulo:'Prompts Profesionales: La Guía Definitiva',     emoji:'⚡', url:'modulos/prompts-profesionales.html' },
+    { slug:'ia-para-negocios',       titulo:'IA para tu Negocio: Casos Prácticos',           emoji:'🚀', url:'modulos/ia-para-negocios.html' },
+    { slug:'automatizacion-n8n',     titulo:'Automatización con n8n y Make',                  emoji:'🔄', url:'modulos/automatizacion-n8n.html' },
+    { slug:'ia-para-creadores',      titulo:'IA para Creadores de Contenido',                emoji:'🎨', url:'modulos/ia-para-creadores.html' },
+    { slug:'ia-para-freelancers',    titulo:'IA para Freelancers y Autónomos',               emoji:'💼', url:'modulos/ia-para-freelancers.html' },
+    { slug:'generacion-imagenes-ia', titulo:'Generación de Imágenes con IA',                 emoji:'🖼️', url:'modulos/generacion-imagenes-ia.html' },
+    { slug:'ia-ventas-marketing',    titulo:'IA en Ventas y Marketing Digital',              emoji:'📈', url:'modulos/ia-ventas-marketing.html' },
+  ];
+
+  function fmtFecha(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString('es-ES', { day:'numeric', month:'short', year:'numeric' });
+  }
+
+  async function init() {
+    const user = await getUser();
+    if (!user) { window.location.href = 'auth.html'; return; }
+
+    // Saludo
+    const nombre = user.user_metadata?.nombre || user.email.split('@')[0];
+    document.getElementById('saludo').textContent = `Hola, ${nombre}. Aquí tienes tu historial de aprendizaje.`;
+
+    // Cargar progreso
+    const progreso = await getProgreso();
+    const completados = progreso.filter(m => m.completado);
+    const vistos      = progreso.filter(m => m.visto && !m.completado);
+    const total       = TODOS_MODULOS.length;
+    const pct         = Math.round((completados.length / total) * 100);
+
+    // Stats
+    document.getElementById('stats-row').innerHTML = `
+      <div class="stat-card">
+        <div class="num green">${completados.length}</div>
+        <div class="lbl">Módulos completados</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">${vistos.length}</div>
+        <div class="lbl">Vistos, sin completar</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--muted)">${total - progreso.length}</div>
+        <div class="lbl">Pendientes</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">${pct}%</div>
+        <div class="lbl">Progreso total</div>
+      </div>`;
+
+    // Barra de progreso
+    if (progreso.length > 0) {
+      document.getElementById('progress-section').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('progress-fill').style.width = pct + '%';
+      }, 100);
+      document.getElementById('progress-label').textContent =
+        `${completados.length} de ${total} módulos completados`;
+    }
+
+    // Lista de actividad
+    const listEl = document.getElementById('actividad-list');
+    if (progreso.length === 0) {
+      listEl.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">📚</div>
+          <h3>Aún no has empezado ningún módulo</h3>
+          <p>Empieza por Make o ElevenLabs — son los más populares y los más prácticos.</p>
+          <a href="modulos/index.html" class="btn-primary">Ver módulos →</a>
+        </div>`;
+    } else {
+      listEl.innerHTML = progreso.map(m => {
+        const cat  = TODOS_MODULOS.find(x => x.slug === m.modulo_slug);
+        const url  = cat?.url || `modulos/${m.modulo_slug}.html`;
+        const emoji = cat?.emoji || '📖';
+        const estado = m.completado ? 'completado' : 'visto';
+        const badgeLabel = m.completado ? '✓ Completado' : '👁 Visto';
+        const fecha = m.completado ? `Completado el ${fmtFecha(m.completado_at)}` : `Visto el ${fmtFecha(m.visto_at)}`;
+
+        return `
+          <div class="modulo-row ${estado}">
+            <div class="modulo-status status-${estado}">
+              ${m.completado ? '✓' : '👁'}
+            </div>
+            <div class="modulo-info">
+              <div class="titulo">${emoji} ${m.modulo_titulo || m.modulo_slug}</div>
+              <div class="meta">${fecha}</div>
+            </div>
+            <span class="modulo-badge badge-${estado}">${badgeLabel}</span>
+            <a href="${url}" class="modulo-link">Ir al módulo →</a>
+          </div>`;
+      }).join('');
+    }
+
+    // Módulos pendientes
+    const slugsVistos = new Set(progreso.map(m => m.modulo_slug));
+    const pendientes  = TODOS_MODULOS.filter(m => !slugsVistos.has(m.slug));
+    if (pendientes.length > 0) {
+      document.getElementById('pendientes-section').style.display = 'block';
+      document.getElementById('pendientes-grid').innerHTML = pendientes.map(m => `
+        <a href="${m.url}" class="todo-card">
+          <div class="todo-emoji">${m.emoji}</div>
+          <div>
+            <div class="todo-name">${m.titulo}</div>
+            <div class="todo-meta">Sin empezar</div>
+          </div>
+        </a>`).join('');
+    }
+  }
+
+  initNav();
+  init();
+</script>
+</body>
+</html>

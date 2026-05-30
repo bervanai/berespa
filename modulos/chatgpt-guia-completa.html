@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT: Guía Completa desde Cero (2025) — Berespa</title>
+  <meta name="description" content="Aprende a usar ChatGPT desde cero en español. Guía completa con ejemplos, trucos y prompts para sacarle el máximo partido en 2025.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); line-height:1.7; }
+    a { color:var(--accent2); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* NAV */
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(8,9,13,0.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 24px; height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent2),var(--green));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-back { font-size:0.88rem; color:var(--muted); }
+    .nav-back:hover { color:var(--text); text-decoration:none; }
+
+    /* LAYOUT */
+    .page-wrap {
+      display:grid;
+      grid-template-columns: 1fr min(680px,100%) 1fr;
+      gap:0;
+      padding:0 24px;
+    }
+    .main-col { grid-column:2; padding:56px 0 80px; }
+
+    /* BREADCRUMB */
+    .breadcrumb { display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--text); text-decoration:none; }
+    .breadcrumb span { color:var(--border); }
+
+    /* HEADER ARTÍCULO */
+    .article-header { margin-bottom:40px; }
+    .article-nivel { display:inline-block; font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:100px; background:rgba(34,211,165,0.12); color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:16px; }
+    .article-header h1 { font-family:var(--ff2); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; line-height:1.2; margin-bottom:16px; }
+    .article-meta { display:flex; gap:20px; font-size:0.83rem; color:var(--muted); flex-wrap:wrap; }
+
+    /* ÍNDICE */
+    .toc {
+      background:var(--bg2); border:1px solid var(--border); border-radius:14px;
+      padding:24px 28px; margin:32px 0; position:sticky; top:80px;
+    }
+    .toc h3 { font-family:var(--ff2); font-size:0.9rem; font-weight:600; margin-bottom:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .toc ol { padding-left:18px; }
+    .toc li { margin-bottom:8px; font-size:0.88rem; }
+    .toc a { color:var(--muted); }
+    .toc a:hover { color:var(--accent2); text-decoration:none; }
+
+    /* CONTENIDO */
+    .article-body h2 {
+      font-family:var(--ff2); font-size:1.5rem; font-weight:700;
+      margin:48px 0 16px; color:var(--text); line-height:1.3;
+      padding-top:24px; border-top:1px solid var(--border);
+    }
+    .article-body h3 { font-family:var(--ff2); font-size:1.1rem; font-weight:600; margin:28px 0 12px; color:var(--accent2); }
+    .article-body p { margin-bottom:20px; font-size:1rem; color:#c8cad4; }
+    .article-body ul, .article-body ol { padding-left:22px; margin-bottom:20px; }
+    .article-body li { margin-bottom:10px; font-size:0.97rem; color:#c8cad4; }
+    .article-body strong { color:var(--text); font-weight:600; }
+
+    /* CALLOUT */
+    .callout {
+      background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.25);
+      border-left:3px solid var(--accent); border-radius:0 10px 10px 0;
+      padding:16px 20px; margin:24px 0;
+    }
+    .callout.green { background:rgba(34,211,165,0.07); border-color:rgba(34,211,165,0.25); border-left-color:var(--green); }
+    .callout.yellow { background:rgba(251,191,36,0.07); border-color:rgba(251,191,36,0.2); border-left-color:#fbbf24; }
+    .callout p { margin:0; font-size:0.93rem; }
+
+    /* PROMPT BOX */
+    .prompt-box {
+      background:var(--bg3); border:1px solid var(--border); border-radius:12px;
+      padding:20px 24px; margin:20px 0; position:relative;
+    }
+    .prompt-label { font-size:0.72rem; font-weight:600; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block; }
+    .prompt-text { font-family:'Courier New', monospace; font-size:0.92rem; color:#d4d8e8; line-height:1.6; white-space:pre-wrap; }
+    .copy-btn {
+      position:absolute; top:16px; right:16px;
+      background:rgba(108,99,255,0.15); border:1px solid rgba(108,99,255,0.3);
+      color:var(--accent2); font-size:0.75rem; font-weight:600;
+      padding:5px 12px; border-radius:6px; cursor:pointer; font-family:var(--ff);
+      transition:.2s;
+    }
+    .copy-btn:hover { background:rgba(108,99,255,0.25); }
+
+    /* LESSON PROGRESS */
+    .lesson-nav {
+      display:flex; gap:12px; margin:40px 0 32px; flex-wrap:wrap;
+    }
+    .lesson-btn {
+      padding:10px 20px; border-radius:10px; font-size:0.88rem; font-weight:500;
+      border:1px solid var(--border); background:var(--bg2); color:var(--muted);
+      cursor:pointer; font-family:var(--ff); transition:.2s;
+    }
+    .lesson-btn:hover { border-color:rgba(108,99,255,0.4); color:var(--accent2); }
+    .lesson-btn.active { background:rgba(108,99,255,0.12); border-color:var(--accent); color:var(--accent2); }
+
+    /* AD */
+    .ad-slot {
+      width:100%; min-height:90px;
+      background:var(--bg2); border:1px dashed rgba(255,255,255,0.06);
+      border-radius:10px; display:flex; align-items:center; justify-content:center;
+      color:var(--muted); font-size:0.75rem; letter-spacing:.5px; margin:32px 0;
+    }
+    .ad-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+
+    /* CTA MÓDULO */
+    .module-cta {
+      background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(34,211,165,0.07));
+      border:1px solid rgba(108,99,255,0.2); border-radius:16px;
+      padding:32px; text-align:center; margin:48px 0;
+    }
+    .module-cta h3 { font-family:var(--ff2); font-size:1.2rem; font-weight:700; margin-bottom:10px; }
+    .module-cta p { font-size:0.9rem; color:var(--muted); margin-bottom:20px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:12px 28px; border-radius:10px; font-weight:600; font-size:0.95rem; transition:.2s; }
+    .btn-primary:hover { opacity:.85; text-decoration:none; }
+
+    /* SIDEBAR */
+    .with-sidebar {
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 280px; gap:40px; padding:40px 24px 80px;
+      align-items:start;
+    }
+    .sidebar { position:sticky; top:80px; }
+
+    @media(max-width:900px) {
+      .with-sidebar { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+    }
+    @media(max-width:600px) {
+      .page-wrap { grid-template-columns:1fr; }
+      .main-col { padding:40px 0; }
+    }
+
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:32px 24px; text-align:center; color:var(--muted); font-size:0.85rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">berespa</a>
+  <a href="index.html" class="nav-back">← Todos los módulos</a>
+</nav>
+
+<div class="with-sidebar">
+
+  <!-- MAIN -->
+  <div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a>
+      <span>›</span>
+      <a href="index.html">Módulos</a>
+      <span>›</span>
+      ChatGPT desde cero
+    </div>
+
+    <!-- Header -->
+    <div class="article-header">
+      <span class="article-nivel">Básico</span>
+      <h1>ChatGPT: Guía Completa desde Cero (2025)</h1>
+      <div class="article-meta">
+        <span>📖 8 lecciones</span>
+        <span>⏱ 45 minutos</span>
+        <span>✓ Gratis</span>
+        <span>🗓 Actualizado junio 2025</span>
+      </div>
+    </div>
+
+    <!-- AD SLOT -->
+    <div>
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot">[AdSense 728×90]</div>
+    </div>
+
+    <!-- ÍNDICE MÓVIL -->
+    <div class="toc">
+      <h3>En este módulo</h3>
+      <ol>
+        <li><a href="#que-es">¿Qué es ChatGPT exactamente?</a></li>
+        <li><a href="#como-funciona">Cómo funciona por dentro</a></li>
+        <li><a href="#primeros-pasos">Primeros pasos: cuenta gratuita</a></li>
+        <li><a href="#conversacion">Tu primera conversación</a></li>
+        <li><a href="#prompts">Cómo escribir buenos prompts</a></li>
+        <li><a href="#usos-practicos">10 usos prácticos inmediatos</a></li>
+        <li><a href="#trucos">Trucos avanzados</a></li>
+        <li><a href="#gratuito-vs-pago">Gratuito vs GPT-4 de pago</a></li>
+      </ol>
+    </div>
+
+    <div class="article-body">
+
+      <h2 id="que-es">1. ¿Qué es ChatGPT exactamente?</h2>
+      <p>ChatGPT es un asistente de inteligencia artificial creado por OpenAI. En pocas palabras, es un programa al que puedes hablarle en lenguaje normal —como si fuera una persona— y te responde de forma coherente, útil y (la mayoría de las veces) precisa.</p>
+      <p>No es un motor de búsqueda como Google. No busca en internet para responderte (a no ser que uses la versión con navegación activada). Lo que hace es <strong>generar texto</strong> basándose en patrones que aprendió entrenándose con miles de millones de páginas de texto.</p>
+
+      <div class="callout green">
+        <p>💡 <strong>La analogía más fácil:</strong> imagina a alguien que ha leído toda la biblioteca del mundo y puede responder a cualquier pregunta. No sabe qué pasó ayer, pero sabe casi todo lo demás.</p>
+      </div>
+
+      <h2 id="como-funciona">2. Cómo funciona por dentro</h2>
+      <p>Detrás de ChatGPT hay un modelo llamado <strong>GPT-4</strong> (en la versión de pago) o GPT-3.5 (en la gratuita). Estos modelos son redes neuronales entrenadas con texto de internet, libros, artículos y código.</p>
+      <p>Cuando escribes algo, el modelo predice cuáles son las palabras más probables que debería responder. No "piensa" como tú, pero el resultado es sorprendentemente útil.</p>
+
+      <h3>Los modelos disponibles en 2025</h3>
+      <ul>
+        <li><strong>GPT-4o</strong> — el más usado, rápido y gratuito con limitaciones</li>
+        <li><strong>GPT-4o mini</strong> — más pequeño y barato, para tareas simples</li>
+        <li><strong>o3 / o4</strong> — modelos de razonamiento para problemas complejos</li>
+      </ul>
+
+      <h2 id="primeros-pasos">3. Primeros pasos: cuenta gratuita</h2>
+      <p>Puedes usar ChatGPT gratis en <strong>chat.openai.com</strong>. Solo necesitas un correo electrónico para registrarte. La versión gratuita incluye:</p>
+      <ul>
+        <li>Acceso a GPT-4o con límite de mensajes por hora</li>
+        <li>Generación de imágenes básica con DALL-E</li>
+        <li>Análisis de archivos y navegación web (con límites)</li>
+      </ul>
+
+      <div class="callout yellow">
+        <p>⚠️ <strong>Consejo:</strong> si llegas al límite del plan gratuito, el sistema te lo avisa. Puedes esperar unas horas o probar Claude.ai o Gemini como alternativas gratuitas.</p>
+      </div>
+
+      <!-- AD SLOT en medio -->
+      <div>
+        <div class="ad-label" style="margin-top:8px">Publicidad</div>
+        <div class="ad-slot" style="min-height:250px; max-width:336px; margin:24px auto;">[AdSense 336×280]</div>
+      </div>
+
+      <h2 id="conversacion">4. Tu primera conversación</h2>
+      <p>Abres la web, haces clic en "New chat" y escribes lo que quieres. Así de simple. Pero hay una diferencia enorme entre una pregunta mediocre y una buena:</p>
+
+      <div class="prompt-box">
+        <span class="prompt-label">❌ Prompt débil</span>
+        <div class="prompt-text">Escríbeme algo sobre marketing</div>
+        <button class="copy-btn" onclick="copiar(this, 'Escríbeme algo sobre marketing')">Copiar</button>
+      </div>
+
+      <div class="prompt-box">
+        <span class="prompt-label">✅ Prompt efectivo</span>
+        <div class="prompt-text">Eres un experto en marketing digital para pequeñas empresas. Escríbeme 5 ideas de contenido para Instagram de una clínica dental en España. El tono debe ser cercano y profesional. Cada idea debe incluir el formato del post (carrusel, reel o imagen) y una propuesta de copy.</div>
+        <button class="copy-btn" onclick="copiar(this, 'Eres un experto en marketing digital para pequeñas empresas. Escríbeme 5 ideas de contenido para Instagram de una clínica dental en España. El tono debe ser cercano y profesional. Cada idea debe incluir el formato del post (carrusel, reel o imagen) y una propuesta de copy.')">Copiar</button>
+      </div>
+
+      <p>La diferencia está en el <strong>contexto, rol, audiencia y formato</strong>. Veremos esto en profundidad en el módulo de Prompts Profesionales.</p>
+
+      <h2 id="prompts">5. Cómo escribir buenos prompts</h2>
+      <p>Un prompt es simplemente lo que le escribes a la IA. La calidad de tu prompt determina casi por completo la calidad de la respuesta. Hay una fórmula sencilla que funciona siempre:</p>
+
+      <h3>La fórmula RCDTF</h3>
+      <ul>
+        <li><strong>R — Rol:</strong> "Actúa como un experto en..."</li>
+        <li><strong>C — Contexto:</strong> explica la situación específica</li>
+        <li><strong>D — Datos:</strong> incluye información relevante</li>
+        <li><strong>T — Tarea:</strong> qué quieres exactamente</li>
+        <li><strong>F — Formato:</strong> cómo quieres la respuesta (lista, párrafo, tabla...)</li>
+      </ul>
+
+      <div class="callout">
+        <p>🔥 <strong>No tienes que usar todos siempre.</strong> Con rol + tarea + formato ya consigues resultados notablemente mejores que la mayoría.</p>
+      </div>
+
+      <h2 id="usos-practicos">6. 10 usos prácticos inmediatos</h2>
+      <p>Estas son las tareas con las que puedes empezar hoy mismo, sin ninguna experiencia previa:</p>
+
+      <ol>
+        <li><strong>Resumir documentos largos</strong> — pega el texto y pide un resumen de 5 puntos</li>
+        <li><strong>Escribir emails profesionales</strong> — describe el contexto y el tono deseado</li>
+        <li><strong>Traducir con matices</strong> — mejor que Google Translate en textos complejos</li>
+        <li><strong>Preparar entrevistas de trabajo</strong> — pide preguntas frecuentes del sector</li>
+        <li><strong>Crear contenido para redes</strong> — guiones, captions, hilos de Twitter</li>
+        <li><strong>Explicar conceptos difíciles</strong> — "explícame X como si tuviera 15 años"</li>
+        <li><strong>Revisar y mejorar textos</strong> — pega tu texto y pide correcciones</li>
+        <li><strong>Generar ideas</strong> — brainstorming, nombres de marca, estrategias</li>
+        <li><strong>Analizar datos</strong> — sube un Excel y pide análisis o gráficos</li>
+        <li><strong>Aprender cualquier tema</strong> — pide que te explique paso a paso</li>
+      </ol>
+
+      <h2 id="trucos">7. Trucos avanzados que muy poca gente usa</h2>
+
+      <h3>Pedirle que mejore sus propias respuestas</h3>
+      <div class="prompt-box">
+        <span class="prompt-label">Prompt de mejora</span>
+        <div class="prompt-text">Ahora revisa tu respuesta anterior y mejórala. Hazla más concisa, más impactante y añade un ejemplo concreto al final.</div>
+        <button class="copy-btn" onclick="copiar(this,'Ahora revisa tu respuesta anterior y mejórala. Hazla más concisa, más impactante y añade un ejemplo concreto al final.')">Copiar</button>
+      </div>
+
+      <h3>Pedir múltiples versiones</h3>
+      <div class="prompt-box">
+        <span class="prompt-label">Prompt de versiones</span>
+        <div class="prompt-text">Dame 3 versiones de este copy: una formal, una cercana y una urgente/agresiva. Para cada una, explica brevemente cuándo usarla.</div>
+        <button class="copy-btn" onclick="copiar(this,'Dame 3 versiones de este copy: una formal, una cercana y una urgente/agresiva. Para cada una, explica brevemente cuándo usarla.')">Copiar</button>
+      </div>
+
+      <h3>Mantener el contexto entre mensajes</h3>
+      <p>ChatGPT recuerda todo lo que has dicho en la misma conversación. Puedes construir sobre respuestas anteriores diciendo "basándote en lo anterior..." o "añade ahora..."</p>
+
+      <h2 id="gratuito-vs-pago">8. Gratuito vs GPT-4 de pago (ChatGPT Plus)</h2>
+      <p>ChatGPT Plus cuesta <strong>20€/mes</strong>. ¿Vale la pena? Depende de cuánto lo vayas a usar:</p>
+
+      <ul>
+        <li>Si usas ChatGPT ocasionalmente → <strong>la versión gratuita es suficiente</strong></li>
+        <li>Si lo usas para trabajar a diario → la inversión se amortiza rápido</li>
+        <li>Si quieres generar imágenes, analizar muchos archivos o usar o3 → necesitas Plus</li>
+      </ul>
+
+      <div class="callout green">
+        <p>✅ <strong>Recomendación Berespa:</strong> empieza con la versión gratuita. Cuando sientas que los límites te frenan, pasa a Plus. No pagues antes de necesitarlo.</p>
+      </div>
+
+    </div>
+
+    <!-- AD SLOT FINAL -->
+    <div style="margin-top:16px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot">[AdSense 728×90]</div>
+    </div>
+
+    <!-- CTA siguiente módulo -->
+    <div class="module-cta">
+      <h3>¿Listo para el siguiente nivel?</h3>
+      <p>Aprende a escribir prompts profesionales que multiplican x10 la calidad de tus resultados.</p>
+      <a href="prompts-profesionales.html" class="btn-primary">Ver módulo: Prompts Profesionales →</a>
+    </div>
+
+    <!-- Navegación entre módulos -->
+    <div style="display:flex; justify-content:space-between; font-size:0.88rem; padding-top:24px; border-top:1px solid var(--border);">
+      <a href="que-es-la-ia.html" style="color:var(--muted)">← ¿Qué es la IA?</a>
+      <a href="prompts-profesionales.html" style="color:var(--accent2)">Prompts Profesionales →</a>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc">
+      <h3>En este módulo</h3>
+      <ol>
+        <li><a href="#que-es">¿Qué es ChatGPT?</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#primeros-pasos">Primeros pasos</a></li>
+        <li><a href="#conversacion">Tu primera conversación</a></li>
+        <li><a href="#prompts">Buenos prompts</a></li>
+        <li><a href="#usos-practicos">10 usos prácticos</a></li>
+        <li><a href="#trucos">Trucos avanzados</a></li>
+        <li><a href="#gratuito-vs-pago">Gratis vs Plus</a></li>
+      </ol>
+    </div>
+
+    <!-- AD SIDEBAR -->
+    <div style="margin-top:20px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot" style="min-height:250px; max-width:280px;">[AdSense 300×250]</div>
+    </div>
+
+    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-top:20px;">
+      <p style="font-size:0.85rem; font-weight:600; margin-bottom:12px; font-family:var(--ff2)">📚 Otros módulos</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li><a href="que-es-la-ia.html" style="font-size:0.85rem; color:var(--muted)">🧠 ¿Qué es la IA?</a></li>
+        <li><a href="prompts-profesionales.html" style="font-size:0.85rem; color:var(--muted)">⚡ Prompts Profesionales</a></li>
+        <li><a href="ia-para-negocios.html" style="font-size:0.85rem; color:var(--muted)">🚀 IA para Negocios</a></li>
+        <li><a href="automatizacion-n8n.html" style="font-size:0.85rem; color:var(--muted)">🔄 Automatización</a></li>
+        <li><a href="ia-para-creadores.html" style="font-size:0.85rem; color:var(--muted)">🎨 IA para Creadores</a></li>
+      </ul>
+    </div>
+  </aside>
+
+</div>
+
+<footer>© 2025 Berespa.com — Aprende IA gratis en español</footer>
+
+<script>
+  function copiar(btn, texto) {
+    navigator.clipboard.writeText(texto).then(() => {
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  }
+</script>
+</body>
+</html>

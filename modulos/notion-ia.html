@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notion con IA: Guía Completa en Español (2025) — Berespa</title>
+  <meta name="description" content="Aprende a usar Notion con Inteligencia Artificial. Organiza tu vida, negocio y proyectos con Notion AI. Guía completa con plantillas y ejemplos en español.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); line-height:1.7; }
+    a { color:var(--accent2); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    nav { position:sticky; top:0; z-index:100; background:rgba(8,9,13,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700; background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-back { font-size:0.88rem; color:var(--muted); }
+    .nav-back:hover { color:var(--text); text-decoration:none; }
+    .with-sidebar { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:40px; padding:40px 24px 80px; align-items:start; }
+    .sidebar { position:sticky; top:80px; }
+    .breadcrumb { display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--text); text-decoration:none; }
+    .article-nivel { display:inline-block; font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:100px; background:rgba(34,211,165,0.12); color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+    .article-header h1 { font-family:var(--ff2); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; line-height:1.2; margin-bottom:14px; }
+    .article-meta { display:flex; gap:20px; font-size:0.83rem; color:var(--muted); flex-wrap:wrap; margin-bottom:0; }
+    .aff-banner { display:flex; align-items:center; justify-content:space-between; gap:20px; background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(34,211,165,0.06)); border:1px solid rgba(108,99,255,0.25); border-radius:14px; padding:20px 24px; margin:28px 0; flex-wrap:wrap; }
+    .aff-banner-text { font-size:0.92rem; color:var(--text); font-weight:500; }
+    .aff-banner-text span { color:var(--green); font-weight:700; }
+    .aff-banner-btn { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:10px 22px; border-radius:9px; font-weight:700; font-size:0.88rem; white-space:nowrap; transition:opacity .2s; }
+    .aff-banner-btn:hover { opacity:.85; text-decoration:none; }
+    .aff-disclosure { font-size:0.7rem; color:var(--muted); width:100%; opacity:.6; }
+    .toc { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin-bottom:20px; }
+    .toc h3 { font-family:var(--ff2); font-size:0.82rem; font-weight:600; margin-bottom:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .toc ol { padding-left:16px; }
+    .toc li { margin-bottom:7px; font-size:0.86rem; }
+    .toc a { color:var(--muted); }
+    .toc a:hover { color:var(--accent2); text-decoration:none; }
+    .article-body h2 { font-family:var(--ff2); font-size:1.45rem; font-weight:700; margin:48px 0 14px; padding-top:20px; border-top:1px solid var(--border); }
+    .article-body h3 { font-family:var(--ff2); font-size:1.05rem; font-weight:600; margin:26px 0 10px; color:var(--accent2); }
+    .article-body p { margin-bottom:18px; font-size:0.98rem; color:#c8cad4; }
+    .article-body ul, .article-body ol { padding-left:20px; margin-bottom:18px; }
+    .article-body li { margin-bottom:9px; font-size:0.96rem; color:#c8cad4; }
+    .article-body strong { color:var(--text); font-weight:600; }
+    .callout { background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.2); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0; }
+    .callout.green { background:rgba(34,211,165,0.07); border-color:rgba(34,211,165,0.2); border-left-color:var(--green); }
+    .callout p { margin:0; font-size:0.91rem; }
+    .prompt-box { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin:18px 0; position:relative; }
+    .prompt-label { font-size:0.7rem; font-weight:600; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block; }
+    .prompt-text { font-family:'Courier New',monospace; font-size:0.9rem; color:#d4d8e8; line-height:1.6; white-space:pre-wrap; }
+    .copy-btn { position:absolute; top:14px; right:14px; background:rgba(108,99,255,0.15); border:1px solid rgba(108,99,255,0.3); color:var(--accent2); font-size:0.73rem; font-weight:600; padding:4px 11px; border-radius:6px; cursor:pointer; font-family:var(--ff); transition:.2s; }
+    .copy-btn:hover { background:rgba(108,99,255,0.25); }
+    .usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin:20px 0 28px; }
+    .usecase-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+    .usecase-icon { font-size:1.4rem; margin-bottom:10px; }
+    .usecase-card h4 { font-family:var(--ff2); font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+    .usecase-card p { font-size:0.82rem; color:var(--muted); margin:0; line-height:1.5; }
+    .ad-slot { width:100%; min-height:90px; background:var(--bg2); border:1px dashed rgba(255,255,255,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.74rem; letter-spacing:.5px; margin:28px 0; }
+    .ad-label { font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+    .module-cta { background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(34,211,165,0.06)); border:1px solid rgba(108,99,255,0.2); border-radius:16px; padding:30px; text-align:center; margin:44px 0; }
+    .module-cta h3 { font-family:var(--ff2); font-size:1.15rem; font-weight:700; margin-bottom:8px; }
+    .module-cta p { font-size:0.88rem; color:var(--muted); margin-bottom:18px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:12px 26px; border-radius:10px; font-weight:600; font-size:0.93rem; transition:.2s; }
+    .btn-primary:hover { opacity:.85; text-decoration:none; }
+    .sidebar-related { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-top:20px; }
+    .sidebar-related h4 { font-family:var(--ff2); font-size:0.85rem; font-weight:600; margin-bottom:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-related ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .sidebar-related a { font-size:0.84rem; color:var(--muted); }
+    .sidebar-related a:hover { color:var(--accent2); text-decoration:none; }
+    @media(max-width:900px) { .with-sidebar { grid-template-columns:1fr; } .sidebar { position:static; } }
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:28px 24px; text-align:center; color:var(--muted); font-size:0.84rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">berespa</a>
+  <a href="index.html" class="nav-back">← Todos los módulos</a>
+</nav>
+
+<div class="with-sidebar">
+  <div>
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a> <span>›</span>
+      <a href="index.html">Módulos</a> <span>›</span>
+      Notion con IA
+    </div>
+
+    <div class="article-header" style="margin-bottom:36px">
+      <span class="article-nivel">Básico → Intermedio</span>
+      <h1>Notion con IA: Organiza tu Vida y Negocio como un Profesional (2025)</h1>
+      <div class="article-meta">
+        <span>📖 8 lecciones</span>
+        <span>⏱ 45 minutos</span>
+        <span>✓ Gratis</span>
+        <span>🗓 Actualizado junio 2025</span>
+      </div>
+    </div>
+
+    <div class="aff-banner">
+      <div>
+        <div class="aff-banner-text">📋 <span>Notion</span> — Empieza gratis con tu workspace</div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:4px">Plan gratuito completo. Sin tarjeta de crédito.</p>
+      </div>
+      <a href="https://affiliate.notion.so/berespa" target="_blank" rel="noopener" class="aff-banner-btn">Probar Notion gratis →</a>
+      <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+    </div>
+
+    <div class="article-body">
+
+      <h2 id="que-es">1. ¿Qué es Notion y para qué sirve?</h2>
+      <p>Notion es una aplicación todo-en-uno que combina notas, bases de datos, gestión de proyectos y documentos en un solo lugar. Si tienes información dispersa entre Google Docs, Excel, Trello y notas del móvil, Notion lo centraliza todo.</p>
+      <p>En 2023 lanzaron <strong>Notion AI</strong>, que añade inteligencia artificial directamente dentro de tu workspace. Esto significa que puedes pedirle a la IA que resuma tus notas, complete tablas, escriba textos o responda preguntas sobre tus documentos sin salir de Notion.</p>
+
+      <div class="callout green">
+        <p>✅ <strong>Lo más potente de Notion AI:</strong> la IA tiene contexto de todo tu workspace. Le puedes preguntar sobre documentos que escribiste hace 6 meses y los encuentra y resume al instante.</p>
+      </div>
+
+      <h2 id="para-quien">2. ¿Para quién es Notion?</h2>
+      <p>Notion funciona para prácticamente cualquier perfil, pero destaca especialmente para:</p>
+
+      <div class="usecase-grid">
+        <div class="usecase-card">
+          <div class="usecase-icon">👨‍💼</div>
+          <h4>Freelancers</h4>
+          <p>Gestiona clientes, proyectos, facturas y tareas en un solo lugar.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">🚀</div>
+          <h4>Emprendedores</h4>
+          <p>CRM simple, planificación de lanzamientos y base de conocimiento del negocio.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">🎓</div>
+          <h4>Estudiantes</h4>
+          <p>Apuntes organizados, seguimiento de tareas y resúmenes con IA.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">✍️</div>
+          <h4>Creadores de contenido</h4>
+          <p>Calendario editorial, banco de ideas y escritura asistida por IA.</p>
+        </div>
+      </div>
+
+      <h2 id="empezar">3. Cómo empezar con Notion desde cero</h2>
+      <p>El plan gratuito de Notion es muy generoso para uso individual. Para empezar:</p>
+      <ol>
+        <li>Crea tu cuenta en <strong>notion.so</strong> — es gratis</li>
+        <li>Notion te ofrece plantillas al registrarte, elige la que más se parezca a tu caso</li>
+        <li>La interfaz principal es tu <strong>sidebar izquierdo</strong>: ahí viven todas tus páginas</li>
+        <li>Cada página puede contener texto, tablas, listas, imágenes, o páginas anidadas</li>
+      </ol>
+
+      <div class="callout">
+        <p>💡 <strong>Consejo para principiantes:</strong> no intentes construir el sistema perfecto desde el día 1. Empieza con una sola página de "Tareas del día" y ve añadiendo complejidad poco a poco.</p>
+      </div>
+
+      <h2 id="notion-ai">4. Notion AI: lo que cambia todo</h2>
+      <p>Notion AI se activa con la tecla <strong>Espacio</strong> en cualquier página o con el botón ✦ que aparece en el sidebar. Lo que puedes hacer:</p>
+
+      <h3>Resumir páginas largas</h3>
+      <div class="prompt-box">
+        <span class="prompt-label">Comando en Notion AI</span>
+        <div class="prompt-text">Resume esta página en 5 puntos clave, en un tono ejecutivo, para compartir con mi equipo.</div>
+        <button class="copy-btn" onclick="copiar(this,'Resume esta página en 5 puntos clave, en un tono ejecutivo, para compartir con mi equipo.')">Copiar</button>
+      </div>
+
+      <h3>Generar contenido dentro de tus páginas</h3>
+      <div class="prompt-box">
+        <span class="prompt-label">Comando en Notion AI</span>
+        <div class="prompt-text">Escribe una descripción profesional para esta base de datos de clientes. Incluye qué información contiene y cómo usarla. Tono claro y directo.</div>
+        <button class="copy-btn" onclick="copiar(this,'Escribe una descripción profesional para esta base de datos de clientes. Incluye qué información contiene y cómo usarla. Tono claro y directo.')">Copiar</button>
+      </div>
+
+      <h3>Preguntar sobre tu propio contenido</h3>
+      <div class="prompt-box">
+        <span class="prompt-label">Q&A con Notion AI</span>
+        <div class="prompt-text">¿Qué tareas tengo pendientes relacionadas con el cliente [NOMBRE]? ¿Qué acordamos en la última reunión?</div>
+        <button class="copy-btn" onclick="copiar(this,'¿Qué tareas tengo pendientes relacionadas con el cliente [NOMBRE]? ¿Qué acordamos en la última reunión?')">Copiar</button>
+      </div>
+
+      <h2 id="plantillas">5. Las 5 plantillas de Notion que más usamos</h2>
+      <p>Estas son las plantillas que recomendamos instalar nada más crear tu cuenta:</p>
+      <ul>
+        <li><strong>Second Brain</strong> — tu base de conocimiento personal organizada por temas</li>
+        <li><strong>CRM simple</strong> — base de datos de contactos, clientes y seguimiento</li>
+        <li><strong>Calendario editorial</strong> — planificación de contenido para redes y blog</li>
+        <li><strong>Gestión de proyectos</strong> — tablero kanban con estados y fechas</li>
+        <li><strong>Diario semanal</strong> — revisión de objetivos y reflexión guiada por IA</li>
+      </ul>
+
+      <div class="callout green">
+        <p>🎯 <strong>Truco pro:</strong> busca plantillas de la comunidad en <strong>notion.so/templates</strong>. Hay miles gratuitas. Filtra por "Spanish" para encontrar las que ya están en español.</p>
+      </div>
+
+      <h2 id="workflows">6. Flujos de trabajo reales con Notion + IA</h2>
+
+      <h3>Flujo 1: Gestión de contenido para redes sociales</h3>
+      <ol>
+        <li>Crea una base de datos "Ideas de contenido" con campos: plataforma, estado, fecha</li>
+        <li>Cuando tengas una idea, añádela como entrada y activa Notion AI</li>
+        <li>Pídele que expanda la idea en un guión completo</li>
+        <li>Cambia el estado a "Listo para publicar" y programa desde ahí</li>
+      </ol>
+
+      <h3>Flujo 2: Reuniones con resumen automático</h3>
+      <ol>
+        <li>Abre una página nueva antes de cada reunión</li>
+        <li>Toma notas rápidas durante la llamada (palabras clave, decisiones)</li>
+        <li>Al terminar, pide a Notion AI: "Convierte estas notas en un acta de reunión con próximos pasos"</li>
+        <li>Comparte el link directamente con los asistentes</li>
+      </ol>
+
+      <h2 id="gratis-vs-pago">7. Plan gratuito vs Notion Plus</h2>
+      <p>El plan gratuito cubre perfectamente el uso individual. Notion Plus (~10$/mes) añade:</p>
+      <ul>
+        <li>Páginas ilimitadas con historial completo</li>
+        <li>Bloques de Notion AI ilimitados (el gratuito tiene 20 al mes)</li>
+        <li>Acceso de invitados ilimitado</li>
+        <li>Archivos de hasta 5GB</li>
+      </ul>
+      <p><strong>Cuándo pagar:</strong> cuando uses Notion AI intensivamente o trabajes en equipo. Para uso personal, el gratuito dura mucho tiempo.</p>
+
+    </div>
+
+    <div class="aff-banner" style="margin-top:40px">
+      <div>
+        <div class="aff-banner-text">Organiza todo tu negocio con <span>Notion gratis</span></div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:4px">Miles de plantillas. IA incluida.</p>
+      </div>
+      <a href="https://affiliate.notion.so/berespa" target="_blank" rel="noopener" class="aff-banner-btn">Empezar con Notion →</a>
+      <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+    </div>
+
+    <div style="margin-top:8px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot">[AdSense 728×90]</div>
+    </div>
+
+    <div class="module-cta">
+      <h3>Combina Notion con Make</h3>
+      <p>Automatiza tu Notion: crea páginas automáticamente, envía alertas y conecta todo con Make.</p>
+      <a href="make-automatizacion.html" class="btn-primary">Ver módulo: Make →</a>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; font-size:0.87rem; padding-top:22px; border-top:1px solid var(--border);">
+      <a href="claude-ia.html" style="color:var(--muted)">← Claude IA</a>
+      <a href="make-automatizacion.html" style="color:var(--accent2)">Make: Automatización →</a>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="toc">
+      <h3>Contenido</h3>
+      <ol>
+        <li><a href="#que-es">¿Qué es Notion?</a></li>
+        <li><a href="#para-quien">¿Para quién es?</a></li>
+        <li><a href="#empezar">Cómo empezar gratis</a></li>
+        <li><a href="#notion-ai">Notion AI</a></li>
+        <li><a href="#plantillas">5 plantillas esenciales</a></li>
+        <li><a href="#workflows">Flujos de trabajo reales</a></li>
+        <li><a href="#gratis-vs-pago">Gratis vs Plus</a></li>
+      </ol>
+    </div>
+    <div style="margin-top:16px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot" style="min-height:250px;max-width:280px;">[AdSense 300×250]</div>
+    </div>
+    <div class="sidebar-related">
+      <h4>Otros módulos</h4>
+      <ul>
+        <li><a href="claude-ia.html">🤖 Claude IA</a></li>
+        <li><a href="make-automatizacion.html">⚙️ Make: Automatización</a></li>
+        <li><a href="chatgpt-guia-completa.html">💬 ChatGPT desde cero</a></li>
+        <li><a href="prompts-profesionales.html">⚡ Prompts Profesionales</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>© 2025 Berespa.com — Aprende IA gratis en español</footer>
+
+<style>
+  #progress-bar-fixed { position:fixed; bottom:0; left:0; right:0; z-index:200; background:rgba(8,9,13,.95); backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,.07); padding:12px 24px; display:flex; align-items:center; gap:16px; transform:translateY(100%); transition:transform .35s ease; }
+  #progress-bar-fixed.show { transform:translateY(0); }
+  #progress-bar-fixed .bar-wrap { flex:1; background:rgba(255,255,255,.07); border-radius:100px; height:6px; overflow:hidden; }
+  #progress-bar-fixed .bar-fill { height:100%; background:linear-gradient(90deg,#a78bfa,#6c63ff); border-radius:100px; transition:width .4s ease; }
+  #progress-bar-fixed .bar-pct { font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif; }
+  #btn-completar { background:linear-gradient(135deg,#22d3a5,#059669); color:#fff; border:none; padding:8px 18px; border-radius:8px; font-weight:700; font-size:.82rem; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; transition:opacity .2s; }
+  #btn-completar:hover { opacity:.85; } #btn-completar:disabled { opacity:.5; cursor:default; }
+  #user-chip { font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif; }
+  #user-chip a { color:#a78bfa; text-decoration:none; } #user-chip a:hover { text-decoration:underline; }
+</style>
+
+<div id="progress-bar-fixed">
+  <div id="user-chip">Cargando...</div>
+  <div class="bar-wrap"><div class="bar-fill" id="scroll-fill" style="width:0%"></div></div>
+  <div class="bar-pct" id="scroll-pct">0%</div>
+  <button id="btn-completar" onclick="completarModulo()">Marcar completado</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/sb.js"></script>
+<script>
+  const MODULO_SLUG   = 'notion-ia';
+  const MODULO_TITULO = 'Notion con IA: Organiza tu Vida y Negocio';
+
+  function copiar(btn, texto) {
+    navigator.clipboard.writeText(texto).then(() => {
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    const el  = document.documentElement;
+    const pct = Math.round(el.scrollTop / (el.scrollHeight - el.clientHeight) * 100);
+    document.getElementById('scroll-fill').style.width = pct + '%';
+    document.getElementById('scroll-pct').textContent  = pct + '%';
+  });
+
+  (async () => {
+    await new Promise(r => setTimeout(r, 400));
+    document.getElementById('progress-bar-fixed').classList.add('show');
+    const user = await getUser();
+    const chip = document.getElementById('user-chip');
+    const btn  = document.getElementById('btn-completar');
+    if (!user) {
+      chip.innerHTML = '<a href="../auth.html">Inicia sesión</a> para guardar progreso';
+      btn.style.display = 'none';
+      return;
+    }
+    const nombre = user.user_metadata?.nombre || user.email.split('@')[0];
+    chip.innerHTML = `👤 ${nombre} &nbsp;·&nbsp; <a href="../mi-progreso.html">Mi progreso</a>`;
+    await marcarVisto(MODULO_SLUG, MODULO_TITULO);
+    const yaCompletado = await isCompletado(MODULO_SLUG);
+    if (yaCompletado) { btn.textContent = '✓ Completado'; btn.disabled = true; }
+  })();
+
+  async function completarModulo() {
+    const btn = document.getElementById('btn-completar');
+    btn.disabled = true; btn.textContent = 'Guardando...';
+    const ok = await marcarCompletado(MODULO_SLUG, MODULO_TITULO);
+    if (ok) { btn.textContent = '✓ Completado'; }
+    else { btn.textContent = 'Error — reintentar'; btn.disabled = false; }
+  }
+</script>
+</body>
+</html>

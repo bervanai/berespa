@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulos de IA Gratis — Berespa</title>
+  <meta name="description" content="Todos los módulos gratuitos de inteligencia artificial en español. Aprende ChatGPT, prompts, automatización, negocios con IA y más.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); }
+    a { color:inherit; text-decoration:none; }
+
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(8,9,13,0.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 24px; height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent2),var(--green));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-back { font-size:0.88rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+    .nav-back:hover { color:var(--text); }
+
+    .page-hero { padding:64px 24px 48px; text-align:center; }
+    .page-hero h1 { font-family:var(--ff2); font-size:clamp(2rem,4vw,3rem); font-weight:700; margin-bottom:12px; }
+    .page-hero p { font-size:1.05rem; color:var(--muted); max-width:520px; margin:0 auto; }
+
+    .filters {
+      display:flex; gap:10px; justify-content:center;
+      flex-wrap:wrap; padding:0 24px 40px;
+    }
+    .filter-btn {
+      padding:8px 20px; border-radius:100px; font-size:0.85rem; font-weight:500;
+      border:1px solid var(--border); background:transparent; color:var(--muted);
+      cursor:pointer; transition:.2s; font-family:var(--ff);
+    }
+    .filter-btn:hover, .filter-btn.active { border-color:var(--accent); color:var(--accent2); background:rgba(108,99,255,0.08); }
+
+    .modulos-container { max-width:1100px; margin:0 auto; padding:0 24px 80px; }
+    .modulos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+
+    .modulo-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:16px;
+      padding:28px; transition:transform .25s, border-color .25s, box-shadow .25s;
+      display:block; position:relative; overflow:hidden;
+    }
+    .modulo-card:hover { transform:translateY(-4px); border-color:rgba(108,99,255,0.35); box-shadow:0 12px 40px rgba(108,99,255,0.12); }
+    .modulo-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--green)); opacity:0; transition:opacity .25s; }
+    .modulo-card:hover::before { opacity:1; }
+
+    .modulo-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:20px; }
+    .modulo-nivel { display:inline-block; font-size:0.72rem; font-weight:600; padding:3px 10px; border-radius:100px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .nivel-basico { background:rgba(34,211,165,0.12); color:var(--green); }
+    .nivel-intermedio { background:rgba(108,99,255,0.12); color:var(--accent2); }
+    .nivel-avanzado { background:rgba(239,68,68,0.1); color:#f87171; }
+    .modulo-card h3 { font-family:var(--ff2); font-size:1.05rem; font-weight:600; margin-bottom:10px; line-height:1.3; }
+    .modulo-card p { font-size:0.88rem; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+    .modulo-meta { display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; color:var(--muted); }
+    .modulo-free { color:var(--green); font-weight:600; font-size:0.78rem; }
+
+    .section-divider { margin:48px 0 32px; }
+    .section-divider h2 { font-family:var(--ff2); font-size:1.3rem; font-weight:600; color:var(--muted); padding-bottom:12px; border-bottom:1px solid var(--border); }
+
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:32px 24px; text-align:center; color:var(--muted); font-size:0.85rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">berespa</a>
+  <a href="../index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="page-hero">
+  <h1>Todos los módulos de IA</h1>
+  <p>Aprende inteligencia artificial gratis, en español, a tu ritmo. Sin registro ni tarjeta.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filtrar('todos',this)">Todos</button>
+  <button class="filter-btn" onclick="filtrar('basico',this)">Básico</button>
+  <button class="filter-btn" onclick="filtrar('intermedio',this)">Intermedio</button>
+  <button class="filter-btn" onclick="filtrar('avanzado',this)">Avanzado</button>
+</div>
+
+<div class="modulos-container">
+  <div class="modulos-grid" id="grid">
+
+    <!-- ⭐ AFILIADOS CON LINK REAL PRIMERO -->
+    <a href="make-automatizacion.html" class="modulo-card" data-nivel="intermedio" style="border-color:rgba(108,99,255,0.35);position:relative">
+      <div style="position:absolute;top:16px;right:16px;font-size:0.68rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px">⭐ Recomendado</div>
+      <div class="modulo-icon" style="background:rgba(108,99,255,0.12)">⚙️</div>
+      <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+      <h3>Make: Automatiza tu Negocio sin Código</h3>
+      <p>Conecta tus apps y crea flujos automáticos que trabajan por ti 24/7. 1.000 operaciones gratis al mes.</p>
+      <div class="modulo-meta"><span>📖 7 lecciones · 50 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="elevenlabs-voces-ia.html" class="modulo-card" data-nivel="basico" style="border-color:rgba(34,211,165,0.35);position:relative">
+      <div style="position:absolute;top:16px;right:16px;font-size:0.68rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px">⭐ Recomendado</div>
+      <div class="modulo-icon" style="background:rgba(34,211,165,0.12)">🎙️</div>
+      <span class="modulo-nivel nivel-basico">Básico</span>
+      <h3>ElevenLabs: Voces IA Realistas en Español</h3>
+      <p>Genera narraciones profesionales, clona tu voz y dobla vídeos automáticamente con IA.</p>
+      <div class="modulo-meta"><span>📖 8 lecciones · 40 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <!-- RESTO DE MÓDULOS -->
+    <a href="que-es-la-ia.html" class="modulo-card" data-nivel="basico">
+      <div class="modulo-icon" style="background:rgba(34,211,165,0.12)">🧠</div>
+      <span class="modulo-nivel nivel-basico">Básico</span>
+      <h3>¿Qué es la Inteligencia Artificial?</h3>
+      <p>Entiende qué es la IA, cómo funciona y por qué está cambiando el mundo sin tecnicismos.</p>
+      <div class="modulo-meta"><span>📖 6 lecciones · 30 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="chatgpt-guia-completa.html" class="modulo-card" data-nivel="basico">
+      <div class="modulo-icon" style="background:rgba(108,99,255,0.12)">💬</div>
+      <span class="modulo-nivel nivel-basico">Básico</span>
+      <h3>ChatGPT: Guía Completa desde Cero</h3>
+      <p>Aprende a usar ChatGPT para trabajar más rápido, escribir mejor y automatizar tareas cotidianas.</p>
+      <div class="modulo-meta"><span>📖 8 lecciones · 45 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="prompts-profesionales.html" class="modulo-card" data-nivel="intermedio">
+      <div class="modulo-icon" style="background:rgba(251,191,36,0.1)">⚡</div>
+      <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+      <h3>Prompts Profesionales: La Guía Definitiva</h3>
+      <p>Domina el arte de escribir prompts para obtener resultados espectaculares con cualquier IA.</p>
+      <div class="modulo-meta"><span>📖 10 lecciones · 55 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="ia-para-negocios.html" class="modulo-card" data-nivel="intermedio">
+      <div class="modulo-icon" style="background:rgba(239,68,68,0.1)">🚀</div>
+      <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+      <h3>IA para tu Negocio: Casos Prácticos</h3>
+      <p>Automatiza tareas, crea contenido, mejora la atención al cliente y multiplica tu productividad.</p>
+      <div class="modulo-meta"><span>📖 9 lecciones · 50 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="automatizacion-n8n.html" class="modulo-card" data-nivel="intermedio">
+      <div class="modulo-icon" style="background:rgba(34,211,165,0.1)">🔄</div>
+      <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+      <h3>Automatización con n8n y Make</h3>
+      <p>Conecta herramientas, automatiza flujos de trabajo y ahorra horas cada semana sin programar.</p>
+      <div class="modulo-meta"><span>📖 7 lecciones · 40 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="ia-para-creadores.html" class="modulo-card" data-nivel="avanzado">
+      <div class="modulo-icon" style="background:rgba(167,139,250,0.12)">🎨</div>
+      <span class="modulo-nivel nivel-avanzado">Avanzado</span>
+      <h3>IA para Creadores de Contenido</h3>
+      <p>Genera vídeos, imágenes, guiones y estrategias de contenido con IA. Ideal para TikTok y YouTube.</p>
+      <div class="modulo-meta"><span>📖 11 lecciones · 60 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="ia-para-freelancers.html" class="modulo-card" data-nivel="basico">
+      <div class="modulo-icon" style="background:rgba(34,211,165,0.1)">💼</div>
+      <span class="modulo-nivel nivel-basico">Básico</span>
+      <h3>IA para Freelancers y Autónomos</h3>
+      <p>Multiplica tus ingresos como freelancer usando IA para trabajar más rápido y ofrecer más valor.</p>
+      <div class="modulo-meta"><span>📖 7 lecciones · 35 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="generacion-imagenes-ia.html" class="modulo-card" data-nivel="intermedio">
+      <div class="modulo-icon" style="background:rgba(251,191,36,0.1)">🖼️</div>
+      <span class="modulo-nivel nivel-intermedio">Intermedio</span>
+      <h3>Generación de Imágenes con IA</h3>
+      <p>Midjourney, DALL-E, Stable Diffusion. Crea imágenes profesionales con prompts visuales.</p>
+      <div class="modulo-meta"><span>📖 8 lecciones · 45 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+    <a href="ia-ventas-marketing.html" class="modulo-card" data-nivel="avanzado">
+      <div class="modulo-icon" style="background:rgba(239,68,68,0.1)">📈</div>
+      <span class="modulo-nivel nivel-avanzado">Avanzado</span>
+      <h3>IA en Ventas y Marketing Digital</h3>
+      <p>Usa IA para generar leads, escribir copys que convierten y automatizar tu embudo de ventas.</p>
+      <div class="modulo-meta"><span>📖 12 lecciones · 70 min</span><span class="modulo-free">✓ Gratis</span></div>
+    </a>
+
+  </div>
+</div>
+
+<footer>© 2025 Berespa.com — Aprende IA gratis en español</footer>
+
+<script>
+  function filtrar(nivel, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.modulo-card').forEach(card => {
+      card.style.display = (nivel === 'todos' || card.dataset.nivel === nivel) ? 'block' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

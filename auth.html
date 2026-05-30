@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceder — Berespa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+      --error:#f87171;
+    }
+    body {
+      background:var(--bg); color:var(--text); font-family:var(--ff);
+      min-height:100vh; display:flex; flex-direction:column;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    nav {
+      border-bottom:1px solid var(--border); padding:0 24px; height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent2),var(--green));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    .auth-wrap {
+      flex:1; display:flex; align-items:center; justify-content:center;
+      padding:40px 24px;
+    }
+    .auth-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:20px;
+      padding:40px; width:100%; max-width:420px;
+      box-shadow:0 24px 48px rgba(0,0,0,0.4);
+    }
+
+    .tabs {
+      display:flex; background:var(--bg3); border-radius:10px; padding:4px;
+      margin-bottom:32px;
+    }
+    .tab {
+      flex:1; padding:9px; text-align:center; border-radius:7px;
+      font-size:.88rem; font-weight:600; cursor:pointer;
+      color:var(--muted); transition:.2s; border:none; background:none;
+      font-family:var(--ff);
+    }
+    .tab.active { background:var(--accent); color:#fff; }
+
+    .auth-card h2 {
+      font-family:var(--ff2); font-size:1.5rem; font-weight:700; margin-bottom:8px;
+    }
+    .auth-card p { font-size:.88rem; color:var(--muted); margin-bottom:28px; }
+
+    .form-group { margin-bottom:18px; }
+    label { display:block; font-size:.82rem; font-weight:500; color:var(--muted); margin-bottom:7px; }
+    input[type=text], input[type=email], input[type=password] {
+      width:100%; background:var(--bg3); border:1px solid var(--border);
+      color:var(--text); padding:12px 16px; border-radius:10px;
+      font-size:.95rem; font-family:var(--ff); outline:none;
+      transition:border-color .2s;
+    }
+    input:focus { border-color:var(--accent); }
+    input::placeholder { color:var(--muted); }
+
+    .btn-submit {
+      width:100%; background:linear-gradient(135deg,var(--accent),#8b5cf6);
+      color:#fff; border:none; padding:13px; border-radius:10px;
+      font-weight:700; font-size:1rem; cursor:pointer; font-family:var(--ff);
+      transition:opacity .2s; margin-top:4px;
+    }
+    .btn-submit:hover { opacity:.88; }
+    .btn-submit:disabled { opacity:.5; cursor:not-allowed; }
+
+    .msg {
+      padding:12px 16px; border-radius:10px; font-size:.86rem;
+      margin-bottom:18px; display:none;
+    }
+    .msg.error { background:rgba(248,113,113,.1); border:1px solid rgba(248,113,113,.3); color:var(--error); }
+    .msg.success { background:rgba(34,211,165,.1); border:1px solid rgba(34,211,165,.3); color:var(--green); }
+    .msg.show { display:block; }
+
+    .divider { text-align:center; font-size:.8rem; color:var(--muted); margin:20px 0; }
+
+    .form-panel { display:none; }
+    .form-panel.active { display:block; }
+
+    .benefits {
+      background:var(--bg3); border-radius:12px; padding:20px;
+      margin-bottom:28px;
+    }
+    .benefits p { font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px; }
+    .benefit { display:flex; align-items:center; gap:10px; font-size:.86rem; color:#c8cad4; margin-bottom:7px; }
+    .benefit span:first-child { color:var(--green); font-weight:700; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">berespa</a>
+  <a href="index.html" style="font-size:.87rem;color:var(--muted)">← Volver al inicio</a>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login',this)">Iniciar sesión</button>
+      <button class="tab" onclick="switchTab('register',this)">Crear cuenta</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="form-panel active" id="panel-login">
+      <h2>Bienvenido de nuevo</h2>
+      <p>Accede para ver tu progreso en los módulos.</p>
+      <div class="msg" id="login-msg"></div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="login-pass" placeholder="••••••••" required>
+        </div>
+        <button class="btn-submit" id="login-btn" type="submit">Entrar</button>
+      </form>
+      <div class="divider">¿No tienes cuenta? <a href="#" onclick="switchTab('register',document.querySelectorAll('.tab')[1])" style="color:var(--accent2)">Regístrate gratis</a></div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="form-panel" id="panel-register">
+      <h2>Crea tu cuenta gratis</h2>
+      <p>Guarda tu progreso y lleva un seguimiento de los módulos que completas.</p>
+
+      <div class="benefits">
+        <p>Qué incluye tu cuenta gratuita</p>
+        <div class="benefit"><span>✓</span> Seguimiento de módulos vistos y completados</div>
+        <div class="benefit"><span>✓</span> Marcadores de progreso en cada lección</div>
+        <div class="benefit"><span>✓</span> Historial de todo tu aprendizaje</div>
+        <div class="benefit"><span>✓</span> Sin coste, sin tarjeta</div>
+      </div>
+
+      <div class="msg" id="register-msg"></div>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" id="reg-nombre" placeholder="¿Cómo te llamamos?" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" minlength="6" required>
+        </div>
+        <button class="btn-submit" id="register-btn" type="submit">Crear cuenta gratis</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/sb.js"></script>
+<script>
+  // Si ya está logueado, redirigir
+  (async () => {
+    const user = await getUser();
+    if (user) window.location.href = 'mi-progreso.html';
+  })();
+
+  function switchTab(panel, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + panel).classList.add('active');
+  }
+
+  function showMsg(id, texto, tipo) {
+    const el = document.getElementById(id);
+    el.textContent = texto;
+    el.className = 'msg ' + tipo + ' show';
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    btn.disabled = true; btn.textContent = 'Entrando...';
+
+    const email = document.getElementById('login-email').value;
+    const pass  = document.getElementById('login-pass').value;
+
+    const { error } = await signIn(email, pass);
+
+    if (error) {
+      showMsg('login-msg', traducirError(error.message), 'error');
+      btn.disabled = false; btn.textContent = 'Entrar';
+    } else {
+      showMsg('login-msg', '✓ ¡Bienvenido! Redirigiendo...', 'success');
+      setTimeout(() => window.location.href = 'mi-progreso.html', 1000);
+    }
+  }
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    const btn = document.getElementById('register-btn');
+    btn.disabled = true; btn.textContent = 'Creando cuenta...';
+
+    const nombre = document.getElementById('reg-nombre').value;
+    const email  = document.getElementById('reg-email').value;
+    const pass   = document.getElementById('reg-pass').value;
+
+    const { error } = await signUp(email, pass, nombre);
+
+    if (error) {
+      showMsg('register-msg', traducirError(error.message), 'error');
+      btn.disabled = false; btn.textContent = 'Crear cuenta gratis';
+    } else {
+      showMsg('register-msg', '✓ Cuenta creada. Revisa tu email para confirmar (si tienes confirmación activada en Supabase).', 'success');
+      btn.textContent = '✓ Cuenta creada';
+      setTimeout(() => window.location.href = 'mi-progreso.html', 2000);
+    }
+  }
+
+  function traducirError(msg) {
+    const errores = {
+      'Invalid login credentials':         'Email o contraseña incorrectos.',
+      'Email not confirmed':               'Confirma tu email antes de entrar.',
+      'User already registered':           'Este email ya está registrado. Inicia sesión.',
+      'Password should be at least 6 characters': 'La contraseña debe tener al menos 6 caracteres.',
+    };
+    return errores[msg] || msg;
+  }
+</script>
+</body>
+</html>

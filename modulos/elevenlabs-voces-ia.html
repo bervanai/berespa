@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElevenLabs: Voces IA en Español — Guía Completa (2025) — Berespa</title>
+  <meta name="description" content="Aprende a crear voces realistas con IA usando ElevenLabs. Genera audios, narraciónes y voces en off profesionales en español sin ser locutor. Guía completa 2025.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#08090d; --bg2:#0f1117; --bg3:#161820;
+      --border:rgba(255,255,255,0.07);
+      --accent:#6c63ff; --accent2:#a78bfa; --green:#22d3a5;
+      --text:#e8eaf0; --muted:#7c8098;
+      --ff:'Inter',sans-serif; --ff2:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--ff); line-height:1.7; }
+    a { color:var(--accent2); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    nav { position:sticky; top:0; z-index:100; background:rgba(8,9,13,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:var(--ff2); font-size:1.4rem; font-weight:700; background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-back { font-size:0.88rem; color:var(--muted); }
+    .nav-back:hover { color:var(--text); text-decoration:none; }
+
+    .with-sidebar { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:40px; padding:40px 24px 80px; align-items:start; }
+    .sidebar { position:sticky; top:80px; }
+    .breadcrumb { display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--text); text-decoration:none; }
+    .article-nivel { display:inline-block; font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:100px; background:rgba(34,211,165,0.12); color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+    .article-header h1 { font-family:var(--ff2); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; line-height:1.2; margin-bottom:14px; }
+    .article-meta { display:flex; gap:20px; font-size:0.83rem; color:var(--muted); flex-wrap:wrap; }
+
+    /* BANNER AFILIADO HERO */
+    .aff-banner-hero {
+      background: linear-gradient(135deg, rgba(34,211,165,0.1), rgba(108,99,255,0.08));
+      border: 1px solid rgba(34,211,165,0.3);
+      border-radius: 16px; padding: 28px 32px; margin: 28px 0;
+      position: relative; overflow: hidden;
+    }
+    .aff-banner-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--green), var(--accent)); }
+    .aff-badge { display:inline-block; font-size:0.7rem; font-weight:700; color:#fbbf24; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.25); padding:3px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px; }
+    .aff-banner-hero h3 { font-family:var(--ff2); font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+    .aff-banner-hero p { font-size:0.88rem; color:var(--muted); margin-bottom:16px; max-width:500px; }
+    .aff-bullets { list-style:none; display:flex; flex-wrap:wrap; gap:10px 24px; margin-bottom:20px; }
+    .aff-bullets li { font-size:0.85rem; color:var(--green); font-weight:500; }
+    .aff-cta-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .aff-cta-btn { display:inline-block; background:linear-gradient(135deg, var(--green), #059669); color:#fff; padding:12px 28px; border-radius:10px; font-weight:700; font-size:0.95rem; transition:opacity .2s, transform .2s; box-shadow:0 4px 18px rgba(34,211,165,0.3); }
+    .aff-cta-btn:hover { opacity:.88; transform:translateY(-1px); text-decoration:none; }
+    .aff-disclosure { font-size:0.7rem; color:var(--muted); opacity:.6; }
+
+    .toc { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin-bottom:20px; }
+    .toc h3 { font-family:var(--ff2); font-size:0.82rem; font-weight:600; margin-bottom:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .toc ol { padding-left:16px; }
+    .toc li { margin-bottom:7px; font-size:0.86rem; }
+    .toc a { color:var(--muted); }
+    .toc a:hover { color:var(--accent2); text-decoration:none; }
+
+    .article-body h2 { font-family:var(--ff2); font-size:1.45rem; font-weight:700; margin:48px 0 14px; padding-top:20px; border-top:1px solid var(--border); }
+    .article-body h3 { font-family:var(--ff2); font-size:1.05rem; font-weight:600; margin:26px 0 10px; color:var(--accent2); }
+    .article-body p { margin-bottom:18px; font-size:0.98rem; color:#c8cad4; }
+    .article-body ul, .article-body ol { padding-left:20px; margin-bottom:18px; }
+    .article-body li { margin-bottom:9px; font-size:0.96rem; color:#c8cad4; }
+    .article-body strong { color:var(--text); font-weight:600; }
+
+    .callout { background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.2); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0; }
+    .callout.green { background:rgba(34,211,165,0.07); border-color:rgba(34,211,165,0.2); border-left-color:var(--green); }
+    .callout p { margin:0; font-size:0.91rem; }
+
+    /* CASOS DE USO */
+    .usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; margin:20px 0 28px; }
+    .usecase-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+    .usecase-icon { font-size:1.5rem; margin-bottom:10px; }
+    .usecase-card h4 { font-family:var(--ff2); font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+    .usecase-card p { font-size:0.82rem; color:var(--muted); margin:0; line-height:1.5; }
+
+    /* PLANES */
+    .planes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:20px 0 28px; }
+    .plan-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; }
+    .plan-card.destacado { border-color:rgba(34,211,165,0.4); background:rgba(34,211,165,0.04); }
+    .plan-name { font-family:var(--ff2); font-size:0.92rem; font-weight:700; margin-bottom:4px; }
+    .plan-price { font-size:1.2rem; font-weight:700; color:var(--green); margin-bottom:10px; }
+    .plan-price span { font-size:0.8rem; font-weight:400; color:var(--muted); }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .plan-features li { font-size:0.82rem; color:var(--muted); }
+    .plan-features li::before { content:'✓ '; color:var(--green); font-weight:700; }
+    .plan-cta { display:block; text-align:center; margin-top:16px; background:linear-gradient(135deg,var(--green),#059669); color:#fff; padding:9px; border-radius:8px; font-weight:700; font-size:0.85rem; transition:opacity .2s; }
+    .plan-cta:hover { opacity:.85; text-decoration:none; }
+
+    .ad-slot { width:100%; min-height:90px; background:var(--bg2); border:1px dashed rgba(255,255,255,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.74rem; letter-spacing:.5px; margin:28px 0; }
+    .ad-label { font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+    .module-cta { background:linear-gradient(135deg,rgba(34,211,165,0.1),rgba(108,99,255,0.06)); border:1px solid rgba(34,211,165,0.2); border-radius:16px; padding:30px; text-align:center; margin:44px 0; }
+    .module-cta h3 { font-family:var(--ff2); font-size:1.15rem; font-weight:700; margin-bottom:8px; }
+    .module-cta p { font-size:0.88rem; color:var(--muted); margin-bottom:18px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; padding:12px 26px; border-radius:10px; font-weight:600; font-size:0.93rem; transition:.2s; }
+    .btn-primary:hover { opacity:.85; text-decoration:none; }
+
+    .sidebar-aff { background:linear-gradient(135deg,rgba(34,211,165,0.1),rgba(108,99,255,0.06)); border:1px solid rgba(34,211,165,0.25); border-radius:14px; padding:20px; margin-top:16px; text-align:center; }
+    .sidebar-aff .emoji { font-size:1.8rem; margin-bottom:10px; }
+    .sidebar-aff .name { font-family:var(--ff2); font-size:0.95rem; font-weight:700; margin-bottom:5px; }
+    .sidebar-aff .desc { font-size:0.8rem; color:var(--muted); margin-bottom:14px; }
+    .sidebar-aff .cta { display:block; background:linear-gradient(135deg,var(--green),#059669); color:#fff; padding:10px; border-radius:9px; font-weight:700; font-size:0.85rem; transition:opacity .2s; }
+    .sidebar-aff .cta:hover { opacity:.85; text-decoration:none; }
+    .sidebar-related { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-top:16px; }
+    .sidebar-related h4 { font-family:var(--ff2); font-size:0.85rem; font-weight:600; margin-bottom:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-related ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .sidebar-related a { font-size:0.84rem; color:var(--muted); }
+    .sidebar-related a:hover { color:var(--accent2); text-decoration:none; }
+    @media(max-width:900px) { .with-sidebar { grid-template-columns:1fr; } .sidebar { position:static; } }
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:28px 24px; text-align:center; color:var(--muted); font-size:0.84rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">berespa</a>
+  <a href="index.html" class="nav-back">← Todos los módulos</a>
+</nav>
+
+<div class="with-sidebar">
+  <div>
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a> <span>›</span>
+      <a href="index.html">Módulos</a> <span>›</span>
+      ElevenLabs: Voces IA
+    </div>
+
+    <div style="margin-bottom:36px">
+      <span class="article-nivel">Básico → Intermedio</span>
+      <h1 style="font-family:var(--ff2);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;line-height:1.2;margin-bottom:14px">ElevenLabs: Crea Voces IA Realistas en Español (2025)</h1>
+      <div style="display:flex;gap:20px;font-size:0.83rem;color:var(--muted);flex-wrap:wrap">
+        <span>📖 8 lecciones</span>
+        <span>⏱ 40 minutos</span>
+        <span>✓ Gratis</span>
+        <span>🗓 Actualizado junio 2025</span>
+      </div>
+    </div>
+
+    <!-- BANNER AFILIADO HERO -->
+    <div class="aff-banner-hero">
+      <div class="aff-badge">⭐ Recomendado por Berespa</div>
+      <h3>Prueba ElevenLabs con nuestro enlace — plan gratuito incluido</h3>
+      <p>Genera hasta 10.000 caracteres al mes gratis. Sin tarjeta. Las mejores voces en español que existen ahora mismo.</p>
+      <ul class="aff-bullets">
+        <li>✓ 10.000 caracteres/mes gratis</li>
+        <li>✓ Voces en español nativas</li>
+        <li>✓ Clona tu propia voz</li>
+        <li>✓ Descarga en MP3</li>
+      </ul>
+      <div class="aff-cta-row">
+        <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="aff-cta-btn">Probar ElevenLabs gratis →</a>
+        <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <h2 id="que-es">1. ¿Qué es ElevenLabs y por qué es la mejor?</h2>
+      <p>ElevenLabs es la plataforma de síntesis de voz con IA más avanzada del mundo en 2025. Su tecnología genera audios que suenan como una persona real hablando, no como el robot del GPS que conocías antes.</p>
+      <p>Lo que hace única a ElevenLabs frente a otras herramientas es la <strong>calidad emocional de sus voces</strong>: entonación natural, pausas correctas, énfasis en las palabras importantes. En español suena especialmente bien, algo poco habitual en herramientas de IA.</p>
+
+      <div class="callout green">
+        <p>✅ <strong>Por qué la usamos en Berespa:</strong> la hemos probado junto a otras 12 herramientas de voz IA. ElevenLabs gana en calidad de voz en español, facilidad de uso y precio. No hay competencia real a su nivel.</p>
+      </div>
+
+      <h2 id="para-que">2. Para qué puedes usar ElevenLabs</h2>
+
+      <div class="usecase-grid">
+        <div class="usecase-card">
+          <div class="usecase-icon">📱</div>
+          <h4>Vídeos para TikTok</h4>
+          <p>Voz en off profesional para tus vídeos sin que tengas que hablar tú.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">🎬</div>
+          <h4>YouTube y Reels</h4>
+          <p>Narra tus tutoriales y contenido educativo con una voz clara y natural.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">🎙️</div>
+          <h4>Podcasts con IA</h4>
+          <p>Crea episodios de podcast escritos y leídos por IA. 100% automático.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">📚</div>
+          <h4>Audiolibros</h4>
+          <p>Convierte cualquier texto, artículo o ebook en audio para escuchar mientras vas en el coche.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">🤖</div>
+          <h4>Chatbots con voz</h4>
+          <p>Añade voz a tus asistentes virtuales y agentes de atención al cliente.</p>
+        </div>
+        <div class="usecase-card">
+          <div class="usecase-icon">💼</div>
+          <h4>Presentaciones</h4>
+          <p>Narración automática para demos de producto, formaciones y onboarding.</p>
+        </div>
+      </div>
+
+      <h2 id="empezar">3. Cómo empezar con ElevenLabs paso a paso</h2>
+      <ol>
+        <li>Crea tu cuenta gratis en <strong>ElevenLabs</strong> usando nuestro enlace (el plan gratuito incluye 10.000 caracteres al mes)</li>
+        <li>Accede a la sección <strong>Text to Speech</strong> en el panel principal</li>
+        <li>Elige una voz del catálogo — filtra por idioma "Spanish" para ver las voces en español</li>
+        <li>Pega o escribe tu texto en el cuadro de texto</li>
+        <li>Pulsa "Generate" y escucha el resultado en segundos</li>
+        <li>Si te gusta, descarga el MP3 y úsalo en tu vídeo, podcast o donde lo necesites</li>
+      </ol>
+
+      <div class="callout">
+        <p>💡 <strong>Las mejores voces en español de ElevenLabs:</strong> busca "Valentina", "Carlos" y "Sofía" en el catálogo de voces. Son las más naturales en castellano y las que mejores resultados dan para contenido de TikTok y YouTube.</p>
+      </div>
+
+      <!-- AD -->
+      <div>
+        <div class="ad-label">Publicidad</div>
+        <div class="ad-slot">[AdSense 728×90]</div>
+      </div>
+
+      <h2 id="clonar-voz">4. Cómo clonar tu propia voz</h2>
+      <p>Una de las funciones más potentes de ElevenLabs es la <strong>clonación de voz</strong>. Con solo 1 minuto de audio tuyo, la IA puede replicar tu voz y usarla para generar cualquier texto. Así suena siempre como tú, sin que tengas que grabar nada más.</p>
+
+      <h3>Pasos para clonar tu voz</h3>
+      <ol>
+        <li>Ve a la sección <strong>Voice Lab → Add Voice → Instant Voice Cloning</strong></li>
+        <li>Graba o sube entre 1 y 5 minutos de audio de tu voz (mejor si es clara, sin ruido de fondo)</li>
+        <li>Dale un nombre a tu voz clonada</li>
+        <li>Ya puedes usarla en cualquier generación de texto a voz</li>
+      </ol>
+
+      <div class="callout green">
+        <p>🎯 <strong>Caso de uso brutal para TikTok:</strong> graba tu voz una sola vez. Luego escribe los guiones con ChatGPT y deja que ElevenLabs los narre con tu voz clonada. Multiplicas el contenido sin grabar más.</p>
+      </div>
+
+      <h2 id="dubbing">5. Doblaje automático de vídeos</h2>
+      <p>ElevenLabs tiene una función de <strong>Dubbing</strong> que traduce y dobla vídeos enteros automáticamente. Subes un vídeo en inglés y lo convierte al español (o al revés) manteniendo el ritmo y la emoción del original.</p>
+      <p>Esto es especialmente útil para:</p>
+      <ul>
+        <li>Doblar vídeos de YouTube en inglés para tu audiencia en español</li>
+        <li>Crear versiones en inglés de tu contenido en español para llegar a más público</li>
+        <li>Doblar cursos, formaciones o demos de producto</li>
+      </ul>
+
+      <h2 id="tiktok-workflow">6. Flujo completo: TikTok con ElevenLabs en 10 minutos</h2>
+      <p>Este es el flujo que usamos para crear contenido para TikTok sin aparecer en cámara y sin grabar voz:</p>
+      <ol>
+        <li><strong>ChatGPT</strong> — escribe el guión del vídeo (30-60 segundos, directo y con gancho)</li>
+        <li><strong>ElevenLabs</strong> — convierte el guión en audio con la voz que hayas elegido o clonado</li>
+        <li><strong>CapCut o Runway</strong> — añade el audio a imágenes o vídeo, genera subtítulos automáticos</li>
+        <li>Publica en TikTok con los hashtags del tema</li>
+      </ol>
+      <p>Todo el proceso tarda menos de 10 minutos una vez que tienes rodaje. Y el resultado suena completamente profesional.</p>
+
+      <h2 id="planes">7. Planes y precios: ¿cuál elegir?</h2>
+      <p>ElevenLabs tiene un plan gratuito muy generoso para empezar:</p>
+
+      <div class="planes-grid">
+        <div class="plan-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">0€ <span>/mes</span></div>
+          <ul class="plan-features">
+            <li>10.000 caracteres/mes</li>
+            <li>Acceso a todas las voces</li>
+            <li>Clonación de voz instantánea</li>
+            <li>Descarga en MP3</li>
+          </ul>
+          <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="plan-cta">Empezar gratis</a>
+        </div>
+        <div class="plan-card destacado">
+          <div class="plan-name" style="color:var(--green)">Starter ⭐</div>
+          <div class="plan-price">5€ <span>/mes</span></div>
+          <ul class="plan-features">
+            <li>30.000 caracteres/mes</li>
+            <li>Calidad comercial</li>
+            <li>Sin marca de agua</li>
+            <li>Uso en proyectos de clientes</li>
+          </ul>
+          <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="plan-cta">Activar Starter</a>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">Creator</div>
+          <div class="plan-price">22€ <span>/mes</span></div>
+          <ul class="plan-features">
+            <li>100.000 caracteres/mes</li>
+            <li>Clonación profesional</li>
+            <li>Acceso a Dubbing</li>
+            <li>API incluida</li>
+          </ul>
+          <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="plan-cta">Ver Creator</a>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <p>✅ <strong>Recomendación Berespa:</strong> empieza con el plan gratuito. Si lo usas para contenido profesional o con clientes, el Starter a 5€ es una inversión mínima con retorno enorme. Para creadores activos, Creator a 22€ es el más completo.</p>
+      </div>
+
+      <h2 id="vs-competencia">8. ElevenLabs vs la competencia</h2>
+      <p>Las alternativas más conocidas son <strong>Murf, Play.ht y Speechify</strong>. Ninguna iguala la calidad de ElevenLabs en voces en español. La única que se acerca es Murf para ciertos acentos, pero a mayor precio y con menos funciones de clonación.</p>
+      <p>Para contenido en español, TikTok o YouTube: <strong>ElevenLabs no tiene rival real en 2025</strong>.</p>
+
+    </div>
+
+    <!-- BANNER AFILIADO FINAL -->
+    <div class="aff-banner-hero" style="margin-top:40px">
+      <div class="aff-badge">🎙️ Empieza hoy gratis</div>
+      <h3>Crea tu primera voz IA en menos de 5 minutos</h3>
+      <p>Plan gratuito con 10.000 caracteres al mes. Sin tarjeta. Las mejores voces en español disponibles ahora.</p>
+      <div class="aff-cta-row">
+        <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="aff-cta-btn">Crear cuenta en ElevenLabs →</a>
+        <span class="aff-disclosure">Enlace de afiliado — sin coste extra para ti</span>
+      </div>
+    </div>
+
+    <div style="margin-top:8px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot">[AdSense 728×90]</div>
+    </div>
+
+    <div class="module-cta">
+      <h3>Automatiza la creación de audios con Make</h3>
+      <p>Conecta ElevenLabs con Make y genera audios automáticamente cada vez que publiques un artículo o post.</p>
+      <a href="make-automatizacion.html" class="btn-primary">Ver módulo: Make →</a>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; font-size:0.87rem; padding-top:22px; border-top:1px solid var(--border);">
+      <a href="make-automatizacion.html" style="color:var(--muted)">← Make: Automatización</a>
+      <a href="claude-ia.html" style="color:var(--accent2)">Claude IA →</a>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="toc">
+      <h3>Contenido</h3>
+      <ol>
+        <li><a href="#que-es">¿Qué es ElevenLabs?</a></li>
+        <li><a href="#para-que">Para qué usarla</a></li>
+        <li><a href="#empezar">Primeros pasos</a></li>
+        <li><a href="#clonar-voz">Clonar tu voz</a></li>
+        <li><a href="#dubbing">Doblaje automático</a></li>
+        <li><a href="#tiktok-workflow">Flujo para TikTok</a></li>
+        <li><a href="#planes">Planes y precios</a></li>
+        <li><a href="#vs-competencia">vs Competencia</a></li>
+      </ol>
+    </div>
+
+    <div class="sidebar-aff">
+      <div class="emoji">🎙️</div>
+      <div class="name">ElevenLabs</div>
+      <div class="desc">10.000 caracteres gratis/mes. Las mejores voces en español.</div>
+      <a href="https://try.elevenlabs.io/elebenlabsberespa" target="_blank" rel="noopener" class="cta">Probar gratis →</a>
+      <div style="font-size:0.68rem;color:var(--muted);margin-top:8px;opacity:.6">Enlace de afiliado</div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="ad-label">Publicidad</div>
+      <div class="ad-slot" style="min-height:250px;max-width:280px;">[AdSense 300×250]</div>
+    </div>
+
+    <div class="sidebar-related">
+      <h4>Otros módulos</h4>
+      <ul>
+        <li><a href="make-automatizacion.html">⚙️ Make: Automatización</a></li>
+        <li><a href="claude-ia.html">🤖 Claude IA</a></li>
+        <li><a href="notion-ia.html">📋 Notion con IA</a></li>
+        <li><a href="chatgpt-guia-completa.html">💬 ChatGPT desde cero</a></li>
+        <li><a href="ia-para-creadores.html">🎨 IA para Creadores</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>© 2025 Berespa.com — Aprende IA gratis en español</footer>
+
+<!-- ── PROGRESS TRACKING ── -->
+<style>
+  #progress-bar-fixed { position:fixed; bottom:0; left:0; right:0; z-index:200; background:rgba(8,9,13,.95); backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,.07); padding:12px 24px; display:flex; align-items:center; gap:16px; transform:translateY(100%); transition:transform .35s ease; }
+  #progress-bar-fixed.show { transform:translateY(0); }
+  #progress-bar-fixed .bar-wrap { flex:1; background:rgba(255,255,255,.07); border-radius:100px; height:6px; overflow:hidden; }
+  #progress-bar-fixed .bar-fill { height:100%; background:linear-gradient(90deg,#22d3a5,#059669); border-radius:100px; transition:width .4s ease; }
+  #progress-bar-fixed .bar-pct { font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif; }
+  #btn-completar { background:linear-gradient(135deg,#22d3a5,#059669); color:#fff; border:none; padding:8px 18px; border-radius:8px; font-weight:700; font-size:.82rem; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; transition:opacity .2s; }
+  #btn-completar:hover { opacity:.85; } #btn-completar:disabled { opacity:.5; cursor:default; }
+  #user-chip { font-size:.78rem; color:#7c8098; white-space:nowrap; font-family:'Inter',sans-serif; }
+  #user-chip a { color:#a78bfa; text-decoration:none; } #user-chip a:hover { text-decoration:underline; }
+</style>
+
+<div id="progress-bar-fixed">
+  <div id="user-chip">Cargando...</div>
+  <div class="bar-wrap"><div class="bar-fill" id="scroll-fill" style="width:0%"></div></div>
+  <div class="bar-pct" id="scroll-pct">0%</div>
+  <button id="btn-completar" onclick="completarModulo()">Marcar completado</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/sb.js"></script>
+<script>
+  const MODULO_SLUG   = 'elevenlabs-voces-ia';
+  const MODULO_TITULO = 'ElevenLabs: Voces IA Realistas en Español';
+
+  window.addEventListener('scroll', () => {
+    const el  = document.documentElement;
+    const pct = Math.round(el.scrollTop / (el.scrollHeight - el.clientHeight) * 100);
+    document.getElementById('scroll-fill').style.width = pct + '%';
+    document.getElementById('scroll-pct').textContent  = pct + '%';
+  });
+
+  (async () => {
+    await new Promise(r => setTimeout(r, 400));
+    document.getElementById('progress-bar-fixed').classList.add('show');
+    const user = await getUser();
+    const chip = document.getElementById('user-chip');
+    const btn  = document.getElementById('btn-completar');
+    if (!user) {
+      chip.innerHTML = '<a href="../auth.html">Inicia sesión</a> para guardar progreso';
+      btn.style.display = 'none';
+      return;
+    }
+    const nombre = user.user_metadata?.nombre || user.email.split('@')[0];
+    chip.innerHTML = `👤 ${nombre} &nbsp;·&nbsp; <a href="../mi-progreso.html">Mi progreso</a>`;
+    await marcarVisto(MODULO_SLUG, MODULO_TITULO);
+    const yaCompletado = await isCompletado(MODULO_SLUG);
+    if (yaCompletado) { btn.textContent = '✓ Completado'; btn.disabled = true; }
+  })();
+
+  async function completarModulo() {
+    const btn = document.getElementById('btn-completar');
+    btn.disabled = true; btn.textContent = 'Guardando...';
+    const ok = await marcarCompletado(MODULO_SLUG, MODULO_TITULO);
+    if (ok) { btn.textContent = '✓ Completado'; }
+    else { btn.textContent = 'Error — reintentar'; btn.disabled = false; }
+  }
+</script>
+</body>
+</html>
